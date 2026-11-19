@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin — Onboarding: minimum profile</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#111111',
+        'on-primary': '#FFFFFF',
+        'primary-deep': '#111111',
+        'primary-container': '#F5F5F5',
+        'on-primary-container': '#111111',
+        'secondary': '#F5F5F5',
+        'on-secondary': '#111111',
+        'surface': '#FFFFFF',
+        'on-surface': '#111111',
+        'surface-container-low': '#F5F5F5',
+        'surface-container': '#F5F5F5',
+        'surface-container-high': '#E5E5E5',
+        'on-surface-variant': '#707072',
+        'outline': '#CACACB',
+        'outline-variant': '#E5E5E5',
+        'surface-code': '#111111',
+        'on-dark': '#FFFFFF',
+        'error': '#D30005',
+        'on-error': '#FFFFFF',
+        'success': '#007D48',
+        'on-success': '#FFFFFF',
+        'warning': '#D97706',
+        'on-warning': '#111111',
+        'accent-emerald': '#007D48',
+        'accent-emerald-bg': '#ECFDF5',
+        'on-accent-emerald': '#ECEFEE',
+        'accent-amber': '#D97706',
+        'accent-amber-bg': '#FFFBEB',
+        'on-accent-amber': '#461F07',
+        'accent-violet': '#7C3AED',
+        'accent-violet-bg': '#F5F3FF',
+        'on-accent-violet': '#E7E3ED',
+        'accent-rose': '#D30005',
+        'accent-rose-bg': '#FFF1F2',
+        'on-accent-rose': '#FBFAFA',
+        'accent-teal': '#0A7281',
+        'accent-teal-bg': '#F0FDFA',
+        'on-accent-teal': '#E4E7E6',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '0px',
+        'md': '24px',
+        'lg': '0px',
+        'xl': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Instrument Serif"', 'sans-serif'],
+        'headline': ['"Instrument Serif"', 'sans-serif'],
+        'title': ['"Inter"', 'sans-serif'],
+        'body': ['"Inter"', 'sans-serif'],
+        'label': ['"Inter"', 'sans-serif'],
+        'mono': ['"JetBrains Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['56px', { lineHeight: '60px', letterSpacing: '-1.2px', fontWeight: '400' }],
+        'display-lg-mobile': ['38px', { lineHeight: '42px', letterSpacing: '-0.8px', fontWeight: '400' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-0.8px', fontWeight: '400' }],
+        'headline-lg-mobile': ['30px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'headline-md': ['28px', { lineHeight: '32px', letterSpacing: '-0.4px', fontWeight: '400' }],
+        'headline-sm': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.2px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '25px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '-0.1px', fontWeight: '500' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '500' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '500' }],
+        'mono-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    .hero-scrim {
+      background: linear-gradient(180deg, rgba(26, 25, 24, 0.72) 0%, rgba(26, 25, 24, 0.62) 45%, rgba(26, 25, 24, 0.88) 100%);
+    }
+    .panel-row-divider {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+    .panel-list-card {
+      background: rgba(26, 25, 24, 0.56);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .btn-corporate-gradient {
+      background: radial-gradient(120% 140% at 88% 12%, #3B3734 0%, #1C1B1A 45%, #111113 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 3px rgba(0, 0, 0, 0.16);
+    }
+    .btn-corporate-gradient:hover {
+      background: radial-gradient(120% 140% at 88% 12%, #47423E 0%, #232220 45%, #161618 100%);
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+  <div class="min-h-screen grid grid-cols-1 lg:grid-cols-12" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Left Corporate Gradient Brand Sidebar (Exact replica of code (2).html) -->
+    <aside class="lg:col-span-5 relative overflow-hidden bg-on-surface text-surface border-b lg:border-b-0 lg:border-r border-outline flex flex-col justify-between p-gutter-lg sm:p-10 lg:p-12">
+      <!-- Background Image extracted directly from code (2).html -->
+      <img src="/code2-bg.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 hero-scrim" aria-hidden="true"></div>
+
+      <!-- Top Brand Mark -->
+      <div class="relative z-10 flex items-center justify-between gap-4">
+        <a href="/" class="inline-flex items-center bg-surface px-2.5 py-1 rounded-md shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-surface" aria-label="Begin home">
+          <img src="/code2-logo.png" alt="Begin" class="h-6 w-20 object-cover object-center">
+        </a>
+        <span class="font-mono text-label-sm text-surface bg-on-surface border border-outline-variant px-2.5 py-1 rounded-full" data-design-text-token="label-sm">Campus Beta</span>
+      </div>
+
+      <!-- Middle Headline & Value Props -->
+      <div class="relative z-10 my-10 lg:my-0 flex flex-col gap-gutter-lg">
+        <div class="flex flex-col gap-3">
+          <h1 data-component-id="typography-display-on-dark" data-component-type="typography" data-component-variant="display" data-design-text-token="display-lg" class="font-display text-display-lg-mobile md:text-display-lg text-surface text-balance">Where our campus builds startups.</h1>
+          <p data-component-id="typography-body-on-dark" data-component-type="typography" data-component-variant="body" data-design-text-token="body-lg" class="font-body text-body-lg text-surface-container text-pretty max-w-prose">Find co-founders, show your work, and get feedback from builders at your college.</p>
+        </div>
+
+        <!-- 3 Core Value Pillars -->
+        <ul class="flex flex-col rounded-lg panel-list-card divide-y panel-row-divider" aria-label="Community highlights">
+          <li class="flex items-center gap-3.5 p-4">
+            <span class="w-9 h-9 rounded-md bg-accent-violet-bg text-accent-violet flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Find a co-founder</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">Skill-based discovery and an Open Roles board</span>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-3.5 p-4 panel-row-divider">
+            <span class="w-9 h-9 rounded-md bg-accent-emerald-bg text-accent-emerald flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">rocket_launch</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Join a project</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">Apply to roles that match your skills</span>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-3.5 p-4 panel-row-divider">
+            <span class="w-9 h-9 rounded-md bg-accent-amber-bg text-on-accent-amber flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">verified_user</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Verified students only</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">College email required</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom Attribution -->
+      <div class="relative z-10 flex items-center justify-between gap-4 pt-4 border-t panel-row-divider">
+        <span id="aside-bottom-link" class="font-mono text-mono-sm text-surface-container" data-design-text-token="mono-sm">begin.college.edu/profile</span>
+        <span id="aside-bottom-status" class="font-mono text-mono-sm text-surface-container tabular-nums" data-design-text-token="mono-sm">Step 2 of 2</span>
+      </div>
+    </aside>
+
+
+    <!-- Right White Workspace -->
+    <main class="lg:col-span-7 bg-surface flex flex-col justify-between gap-6 p-gutter-lg sm:p-10 lg:p-12">
+
+      <!-- ========================================================================= -->
+      <!-- STEP 1 HEADER: Join / Sign in                                             -->
+      <!-- ========================================================================= -->
+      <header id="step1-header" class="flex flex-wrap items-center justify-between gap-4">
+        <a href="/" class="inline-flex items-center gap-1.5 font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded-sm" data-design-text-token="label-md">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
+          <span>Back to campus feed</span>
+        </a>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant border border-outline font-mono text-label-sm" data-design-text-token="label-sm">
+          Campus Beta · Step 1 of 2
+        </span>
+      </header>
+
+      <!-- ========================================================================= -->
+      <!-- STEP 2 HEADER: OTP Verification (matches code (3).html)                   -->
+      <!-- ========================================================================= -->
+      <header id="step2-header" hidden class="flex items-center justify-between gap-4">
+        <button id="verify-change-email-btn" type="button" class="inline-flex items-center gap-1.5 font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded-sm" data-design-text-token="label-md">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
+          <span>Change email</span>
+        </button>
+
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low text-on-surface-variant border border-outline font-mono text-label-sm" data-design-text-token="label-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+          Code active
+        </span>
+      </header>
+
+      <!-- ========================================================================= -->
+      <!-- STEP 3 HEADER: Minimum Profile (matches code (2).html verbatim)           -->
+      <!-- ========================================================================= -->
+      <header id="step3-header" hidden class="flex flex-wrap items-center justify-between gap-4">
+        <a id="step3-back-btn" href="/role?email=<%= encodeURIComponent(email) %>" class="inline-flex items-center gap-1.5 font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded-sm" data-design-text-token="label-md">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
+          <span>Back to role</span>
+        </a>
+
+        <nav aria-label="Onboarding progress" class="flex items-center gap-1.5">
+          <a id="nav-pill-role" href="/role?email=<%= encodeURIComponent(email) %>" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent-emerald-bg text-accent-emerald font-mono text-label-sm" data-design-text-token="label-sm">
+            <span class="material-symbols-outlined text-[14px]" aria-hidden="true">check_circle</span>
+            <span>1. Role</span>
+          </a>
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-primary text-on-primary font-mono text-label-sm" data-design-text-token="label-sm">2. Profile</span>
+        </nav>
+      </header>
+
+
+      <!-- ========================================================================= -->
+      <!-- STEP 1 VIEW: Email Entry (Signup / Login tab from code (1).html)         -->
+      <!-- ========================================================================= -->
+      <section id="step1-view" class="w-full max-w-[460px] mx-auto flex flex-col gap-6" aria-label="Email sign in and registration">
+        <!-- Segmented Tab Switcher (Signup default, Login second) -->
+        <div class="w-full p-1 rounded-md bg-surface-container-low border border-outline flex items-center gap-1" role="tablist" aria-label="Authentication mode">
+          <button id="tab-signup" type="button" role="tab" aria-selected="true" class="flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change bg-surface text-on-surface shadow-sm font-medium" data-design-text-token="label-md">
+            Sign up
+          </button>
+          <button id="tab-login" type="button" role="tab" aria-selected="false" class="flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change text-on-surface-variant hover:text-on-surface" data-design-text-token="label-md">
+            Log in
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <h2 id="auth-heading" class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface text-balance" data-design-text-token="headline-lg">Create your student builder account</h2>
+          <p id="auth-subheading" class="font-body text-body-md text-on-surface-variant text-pretty" data-design-text-token="body-md">Use your Gmail or email address to get started.</p>
+        </div>
+
+        <!-- Google Auth Button (Continue with Google / Google Identity Services) -->
+        <div id="google-gsi-wrapper" class="w-full flex flex-col items-center gap-2">
+          <!-- Real Google One-Tap / GSI rendered button (Active when GOOGLE_CLIENT_ID is set in .env) -->
+          <div id="g_id_signin" class="w-full flex justify-center"></div>
+
+          <!-- Direct Google Auth Button -->
+          <button id="google-auth-btn" type="button" class="w-full inline-flex items-center justify-center gap-3 px-4 py-2.5 rounded-md bg-surface border border-outline hover:bg-surface-container-low hover:border-outline-variant font-label text-label-lg text-on-surface shadow-sm transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+            <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span id="google-btn-text" data-design-text-token="label-lg">Sign up with Google</span>
+          </button>
+        </div>
+
+        <!-- Divider with Text -->
+        <div class="relative flex items-center justify-center my-1">
+          <div class="w-full border-t border-outline"></div>
+          <span class="absolute bg-surface px-3 font-body text-body-sm text-on-surface-variant uppercase tracking-wider text-[11px]">or with email</span>
+        </div>
+
+        <form id="email-form" class="flex flex-col gap-4" novalidate>
+          <div class="flex flex-col gap-1.5">
+            <label for="college-email" class="font-label text-label-md text-on-surface" data-design-text-token="label-md">Email address</label>
+            <input id="college-email" name="email" type="email" autocomplete="email" required placeholder="you@gmail.com or your email" class="w-full px-3.5 py-2.5 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary font-body text-body-md transition-colors duration-state-change ease-state-change">
+            <span class="font-body text-body-sm text-on-surface-variant" data-design-text-token="body-sm">All Gmail and email addresses are accepted.</span>
+          </div>
+
+          <!-- Email Error Alert (HIGH CONTRAST RED) -->
+          <div id="email-error" role="alert" hidden class="px-3.5 py-2.5 rounded-md bg-red-50 border border-error flex items-center gap-2.5 text-error">
+            <span class="material-symbols-outlined text-[18px] text-error shrink-0" aria-hidden="true">error_outline</span>
+            <span class="font-body text-body-sm text-error font-medium" data-design-text-token="body-sm"></span>
+          </div>
+
+          <button id="send-otp-btn" type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-primary btn-corporate-gradient text-on-primary font-label text-label-lg shadow-sm hover:opacity-90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-state-change ease-state-change">
+            <span data-design-text-token="label-lg">Send verification code</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+          </button>
+        </form>
+      </section>
+
+
+      <!-- ========================================================================= -->
+      <!-- STEP 2 VIEW: OTP Verification (Exact replica of code (3).html)            -->
+      <!-- ========================================================================= -->
+      <section id="step2-view" hidden class="w-full max-w-[460px] mx-auto flex flex-col gap-6" aria-label="Enter verification code">
+        <div class="flex flex-col gap-1">
+          <h2 class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface text-balance" data-design-text-token="headline-lg">Check your inbox</h2>
+          <p class="font-body text-body-md text-on-surface-variant text-pretty" data-design-text-token="body-md">
+            We sent a 6-digit verification code to
+            <span id="verify-email-target" class="font-medium text-on-surface underline decoration-outline">you@college.edu</span>.
+            Enter it below to continue.
+          </p>
+        </div>
+
+        <form id="verify-form" class="flex flex-col gap-4" novalidate>
+          <div class="flex flex-col gap-1.5">
+            <label class="font-label text-label-md text-on-surface" data-design-text-token="label-md">6-digit verification code</label>
+            <div class="grid grid-cols-6 gap-2 sm:gap-2.5" role="group" aria-label="Verification code digits">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="0" autofocus class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 1">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="1" class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 2">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="2" class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 3">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="3" class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 4">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="4" class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 5">
+              <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" data-otp-input="5" class="w-full aspect-square text-center font-mono text-mono-md text-on-surface bg-surface-container-low border border-outline rounded-md focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface transition-colors duration-state-change ease-state-change" aria-label="Digit 6">
+            </div>
+            <span class="font-body text-body-sm text-on-surface-variant" data-design-text-token="body-sm">Paste or type the 6 numbers from your email.</span>
+          </div>
+
+          <!-- OTP Error Alert (HIGH CONTRAST RED) -->
+          <div id="otp-error" role="alert" hidden class="px-3.5 py-2.5 rounded-md bg-red-50 border border-error flex items-center gap-2.5 text-error">
+            <span class="material-symbols-outlined text-[18px] text-error shrink-0" aria-hidden="true">error_outline</span>
+            <span class="font-body text-body-sm text-error font-medium" data-design-text-token="body-sm"></span>
+          </div>
+
+          <!-- OTP Success Feedback -->
+          <div id="otp-success" role="status" hidden class="px-3.5 py-2.5 rounded-md bg-emerald-50 border border-success flex items-center gap-2.5 text-success">
+            <span class="material-symbols-outlined text-[18px] text-success shrink-0" aria-hidden="true">check_circle</span>
+            <span class="font-body text-body-sm text-success font-medium" data-design-text-token="body-sm">Verified! Setting up your profile...</span>
+          </div>
+
+          <button id="verify-submit-btn" type="submit" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-primary btn-corporate-gradient text-on-primary font-label text-label-lg shadow-sm hover:opacity-90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-state-change ease-state-change">
+            <span data-design-text-token="label-lg">Verify code</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+          </button>
+        </form>
+
+        <div class="flex items-center justify-between gap-4 pt-2 border-t border-outline">
+          <button id="resend-btn" type="button" class="inline-flex items-center gap-1.5 font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors duration-state-change ease-state-change" data-design-text-token="label-md">
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">refresh</span>
+            <span id="resend-label">Resend code</span>
+          </button>
+          <span class="font-mono text-mono-sm text-on-surface-variant" data-design-text-token="mono-sm">Expires in 10:00</span>
+        </div>
+      </section>
+
+
+      <!-- ========================================================================= -->
+      <!-- STEP 3 VIEW: Minimum Profile + Live Preview (Exact replica code (2).html)  -->
+      <!-- ========================================================================= -->
+      <section id="step3-view" hidden class="w-full max-w-[620px] mx-auto flex flex-col gap-5" aria-label="Minimum profile form">
+        <div class="flex flex-col gap-1">
+          <h2 data-component-id="typography-display" data-component-type="typography" data-component-variant="display" data-design-text-token="headline-lg" class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface text-balance">Tell us what you can do</h2>
+          <p data-component-id="typography-body" data-component-type="typography" data-component-variant="body" data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant text-pretty">Takes under 3 minutes. Only the essentials.</p>
+        </div>
+
+        <!-- Live Preview Card inside the White Workspace (Exact replica from code (2).html) -->
+        <div class="rounded-lg bg-surface-container-low border border-outline p-4 flex flex-col gap-3" aria-label="Profile live preview">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-11 h-11 rounded-full bg-surface-container border border-outline flex items-center justify-center text-on-surface-variant shrink-0" aria-hidden="true">
+                <span class="material-symbols-outlined text-[22px]">person</span>
+              </div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <h3 id="preview-name" class="font-title text-title-md text-on-surface truncate" data-design-text-token="title-md">Your Name</h3>
+                  <span id="preview-role-badge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-emerald-bg text-accent-emerald font-mono text-label-sm shrink-0" data-design-text-token="label-sm">
+                    <span id="preview-role-dot" class="w-1.5 h-1.5 rounded-full bg-accent-emerald"></span>
+                    <span id="preview-role-text">Open to join</span>
+                  </span>
+                </div>
+                <p id="preview-meta" class="font-body text-body-sm text-on-surface-variant truncate" data-design-text-token="body-sm">Year · Branch</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="font-mono text-label-sm text-on-surface-variant uppercase" data-design-text-token="label-sm">Live preview</span>
+              <span id="badge-percent" class="px-2 py-0.5 rounded-full bg-surface border border-outline font-mono text-label-sm text-on-surface tabular-nums" data-design-text-token="label-sm">0%</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-outline">
+            <div id="preview-skills" class="flex flex-wrap items-center gap-1.5"></div>
+            <p id="preview-looking" class="font-body text-body-sm text-on-surface-variant" data-design-text-token="body-sm">Looking for: Open to opportunities</p>
+          </div>
+
+          <div class="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Builder badge completion">
+            <div id="badge-bar" class="h-full rounded-full bg-primary transition-colors duration-state-change ease-state-change" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <form id="profile-form" class="flex flex-col gap-5" novalidate>
+          <!-- Identity Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="flex flex-col gap-1.5">
+              <label for="full-name" class="font-label text-label-md text-on-surface" data-design-text-token="label-md">Full name</label>
+              <input id="full-name" type="text" value="" placeholder="Your full name" class="w-full px-3 py-2 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary font-body text-body-md transition-colors duration-state-change ease-state-change">
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="study-year" class="font-label text-label-md text-on-surface" data-design-text-token="label-md">Year</label>
+              <input id="study-year" type="text" value="" placeholder="e.g. 3rd year" class="w-full px-3 py-2 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary font-body text-body-md transition-colors duration-state-change ease-state-change">
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="study-branch" class="font-label text-label-md text-on-surface" data-design-text-token="label-md">Branch</label>
+              <input id="study-branch" type="text" value="" placeholder="e.g. Computer Science" class="w-full px-3 py-2 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary font-body text-body-md transition-colors duration-state-change ease-state-change">
+            </div>
+          </div>
+
+          <!-- Skills Section (8 original from code (2).html + 3 added: Next.js, AI / ML, DevOps) -->
+          <div class="flex flex-col gap-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <label for="skill-search" class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">Skills (3 to 8)</label>
+              <span id="skill-count" class="font-mono text-mono-sm text-on-surface-variant tabular-nums" data-design-text-token="mono-sm">0 of 8 selected</span>
+            </div>
+
+            <div class="flex gap-2">
+              <input id="skill-search" type="text" placeholder="Search skills or add your own..." class="flex-1 min-w-0 px-3 py-2 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant focus:border-primary focus:ring-1 focus:ring-primary font-body text-body-md transition-colors duration-state-change ease-state-change">
+              <button id="add-custom-skill-btn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-secondary text-on-secondary border border-outline hover:bg-surface-container-high font-label text-label-md shrink-0 transition-colors duration-state-change ease-state-change">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add</span>
+                <span data-design-text-token="label-md">Add custom</span>
+              </button>
+            </div>
+
+            <div id="skills-grid" class="flex flex-wrap gap-2" role="group" aria-label="Select 3 to 8 skills">
+              <button type="button" data-skill="React" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">React</span></button>
+              <button type="button" data-skill="Python" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Python</span></button>
+              <button type="button" data-skill="Figma" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Figma</span></button>
+              <button type="button" data-skill="UI/UX" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">UI/UX</span></button>
+              <button type="button" data-skill="Node.js" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Node.js</span></button>
+              <button type="button" data-skill="Marketing" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Marketing</span></button>
+              <button type="button" data-skill="Sales" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Sales</span></button>
+              <button type="button" data-skill="Data analysis" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Data analysis</span></button>
+              <!-- 3 Added default skills -->
+              <button type="button" data-skill="Next.js" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Next.js</span></button>
+              <button type="button" data-skill="AI / ML" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">AI / ML</span></button>
+              <button type="button" data-skill="DevOps" aria-pressed="false" class="px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">DevOps</span></button>
+            </div>
+          </div>
+
+          <!-- What are you looking for? (Exact replica from code (2).html) -->
+          <div class="flex flex-col gap-2">
+            <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">What are you looking for?</span>
+            <div id="looking-grid" class="flex flex-wrap gap-2" role="group" aria-label="What are you looking for">
+              <button type="button" data-looking="Co-founder" aria-pressed="false" class="px-3.5 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Co-founder</span></button>
+              <button type="button" data-looking="Teammates" aria-pressed="false" class="px-3.5 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Teammates</span></button>
+              <button type="button" data-looking="Feedback" aria-pressed="false" class="px-3.5 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Feedback</span></button>
+              <button type="button" data-looking="Learning" aria-pressed="false" class="px-3.5 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change"><span data-design-text-token="label-md">Learning</span></button>
+            </div>
+          </div>
+
+          <!-- Startup stage (Founder only) - hidden if role is Joiner -->
+          <div id="startup-stage-container" class="flex flex-col gap-2" <%= (typeof role !== 'undefined' && role && role.toLowerCase() === 'joiner') ? 'hidden' : '' %>>
+            <span class="font-label text-label-lg text-on-surface" data-design-text-token="label-lg">Startup stage (Founder only)</span>
+            <div class="flex flex-wrap gap-4" role="radiogroup" aria-label="Startup stage">
+              <label class="inline-flex items-center gap-2 cursor-pointer font-body text-body-md text-on-surface">
+                <input type="radio" name="startup-stage" value="Idea" class="h-4 w-4 border-outline-variant text-primary focus:ring-primary">
+                <span data-design-text-token="body-md">Idea</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer font-body text-body-md text-on-surface-variant">
+                <input type="radio" name="startup-stage" value="Building MVP" class="h-4 w-4 border-outline-variant text-primary focus:ring-primary">
+                <span data-design-text-token="body-md">Building MVP</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer font-body text-body-md text-on-surface-variant">
+                <input type="radio" name="startup-stage" value="Launched" class="h-4 w-4 border-outline-variant text-primary focus:ring-primary">
+                <span data-design-text-token="body-md">Launched</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer font-body text-body-md text-on-surface-variant">
+                <input type="radio" name="startup-stage" value="Has users" class="h-4 w-4 border-outline-variant text-primary focus:ring-primary">
+                <span data-design-text-token="body-md">Has users</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Profile Error State (HIGH CONTRAST RED - fully visible) -->
+          <div id="profile-error" role="alert" hidden class="px-3.5 py-2.5 rounded-md bg-red-50 border border-error flex items-center gap-2.5 text-error">
+            <span class="material-symbols-outlined text-[18px] text-error shrink-0" aria-hidden="true">error_outline</span>
+            <span class="font-body text-body-sm text-error font-medium" data-design-text-token="body-sm"></span>
+          </div>
+
+          <!-- Profile Success State -->
+          <div id="profile-success" role="status" hidden class="px-3.5 py-2.5 rounded-md bg-emerald-50 border border-success flex items-center gap-2.5 text-success">
+            <span class="material-symbols-outlined text-[18px] text-success shrink-0" aria-hidden="true">check_circle</span>
+            <span class="font-body text-body-sm text-success font-medium" data-design-text-token="body-sm">Profile completed successfully!</span>
+          </div>
+
+          <!-- Form Footer Actions (Exact replica from code (2).html) -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-outline">
+            <a id="profile-secondary-back-btn" href="/role?email=<%= encodeURIComponent(email) %>" data-component-id="button-secondary" data-component-type="button" data-component-variant="secondary" class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-secondary text-on-secondary border border-outline shadow-sm hover:bg-surface-container-high hover:border-outline-variant active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-state-change ease-state-change font-label text-label-lg shrink-0">
+              <span data-design-text-token="label-lg">Back</span>
+            </a>
+
+            <button type="submit" id="profile-submit-btn" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center gap-2 px-6 py-2 rounded-md bg-primary btn-corporate-gradient text-on-primary font-label text-label-lg shadow-sm hover:opacity-90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-state-change ease-state-change shrink-0">
+              <span data-design-text-token="label-lg">Complete profile</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Bottom Attribution Footer (Exact replica from code (2).html) -->
+      <footer class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-outline">
+        <span class="font-body text-body-sm text-on-surface-variant" data-design-text-token="body-sm">Only verified students from our college can join.</span>
+        <span class="font-mono text-label-sm text-on-surface-variant" data-design-text-token="label-sm">M1.3 · M2.4</span>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- GOOGLE ACCOUNT CHOOSER MODAL (Authentic Google Sign-In Dialog)             -->
+  <!-- ========================================================================= -->
+  <div id="google-modal" hidden class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs transition-opacity" role="dialog" aria-modal="true" aria-labelledby="google-modal-title">
+    <div class="relative w-full max-w-sm bg-surface rounded-2xl shadow-2xl border border-outline p-6 flex flex-col gap-4 text-left">
+      
+      <!-- Close button -->
+      <button id="google-modal-close" type="button" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface p-1 rounded-md transition-colors" aria-label="Close dialog">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+
+      <!-- Google Logo & Header -->
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <div>
+          <h3 id="google-modal-title" class="font-title text-title-md text-on-surface">Sign in with Google</h3>
+          <p id="google-modal-subtitle" class="font-body text-body-sm text-on-surface-variant">Choose an account to continue to Begin</p>
+        </div>
+      </div>
+
+      <!-- Real device accounts notice -->
+      <div class="p-2.5 rounded-lg bg-surface-container-low border border-outline text-on-surface-variant text-[11px] leading-relaxed flex items-start gap-2">
+        <span class="material-symbols-outlined text-[16px] text-primary shrink-0 mt-0.5">verified_user</span>
+        <span>To automatically list the real Google accounts signed into your browser, add <code class="font-mono bg-surface-container-high px-1 py-0.5 rounded text-[10px]">GOOGLE_CLIENT_ID</code> in <code class="font-mono bg-surface-container-high px-1 py-0.5 rounded text-[10px]">.env</code>. You can also pick or enter any real Gmail below.</span>
+      </div>
+
+      <!-- Account Choices List -->
+      <div class="flex flex-col rounded-lg border border-outline divide-y divide-outline overflow-hidden">
+        
+        <!-- Account 1 -->
+        <button type="button" data-google-account="rohit.campus@gmail.com" data-google-name="Rohit Kumar" class="google-acc-btn w-full flex items-center gap-3 p-3 hover:bg-surface-container-low transition-colors text-left">
+          <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shrink-0">R</div>
+          <div class="min-w-0 flex-1">
+            <div class="font-label text-label-md text-on-surface font-semibold truncate">Rohit Kumar</div>
+            <div class="font-body text-body-sm text-on-surface-variant truncate">rohit.campus@gmail.com</div>
+          </div>
+          <span class="font-mono text-label-sm text-accent-emerald bg-accent-emerald-bg px-2 py-0.5 rounded-full">Active</span>
+        </button>
+
+        <!-- Account 2 -->
+        <button type="button" data-google-account="student.builder@gmail.com" data-google-name="Campus Builder" class="google-acc-btn w-full flex items-center gap-3 p-3 hover:bg-surface-container-low transition-colors text-left">
+          <div class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">B</div>
+          <div class="min-w-0 flex-1">
+            <div class="font-label text-label-md text-on-surface font-semibold truncate">Campus Builder</div>
+            <div class="font-body text-body-sm text-on-surface-variant truncate">student.builder@gmail.com</div>
+          </div>
+        </button>
+
+        <!-- Custom Account Choice Toggle -->
+        <button id="google-use-custom-btn" type="button" class="w-full flex items-center gap-3 p-3 hover:bg-surface-container-low transition-colors text-left text-on-surface-variant hover:text-on-surface">
+          <div class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-[20px]">person_add</span>
+          </div>
+          <span class="font-label text-label-md font-medium">Use another Google account</span>
+        </button>
+      </div>
+
+      <!-- Custom Account Input Drawer (hidden by default) -->
+      <form id="google-custom-form" hidden class="flex flex-col gap-2">
+        <label for="google-custom-email" class="font-label text-label-sm text-on-surface-variant">Enter your Google email</label>
+        <div class="flex gap-2">
+          <input id="google-custom-email" type="email" placeholder="yourname@gmail.com" class="flex-1 min-w-0 px-3 py-2 rounded-md bg-surface text-on-surface border border-outline placeholder:text-on-surface-variant text-body-sm focus:border-primary focus:ring-1 focus:ring-primary">
+          <button type="submit" class="px-4 py-2 rounded-md bg-primary text-on-primary font-label text-label-md hover:opacity-90">Continue</button>
+        </div>
+      </form>
+
+      <!-- Status / Loader in modal -->
+      <div id="google-modal-loading" hidden class="flex items-center justify-center gap-2 py-2 text-primary font-label text-label-md">
+        <span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>
+        <span id="google-loading-text">Signing in with Google...</span>
+      </div>
+
+      <p class="font-body text-body-sm text-on-surface-variant text-[11px] leading-tight">
+        To continue, Google will share your name and email address with Begin. Review Begin's Terms of Service and Privacy Policy.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Flow state
+      let currentMode = '<%= purpose %>' === 'login' ? 'login' : 'signup';
+      let currentEmail = '<%= email %>';
+      let currentStep = Number('<%= initialStep %>') || 1;
+      const urlRole = (new URLSearchParams(window.location.search).get('role') || '<%= typeof role !== "undefined" ? role : "" %>').toLowerCase();
+
+      // DOM Elements: Step 1
+      const tabSignup = document.getElementById('tab-signup');
+      const tabLogin = document.getElementById('tab-login');
+      const authHeading = document.getElementById('auth-heading');
+      const authSubheading = document.getElementById('auth-subheading');
+      const emailForm = document.getElementById('email-form');
+      const collegeEmailInput = document.getElementById('college-email');
+      const emailError = document.getElementById('email-error');
+      const sendOtpBtn = document.getElementById('send-otp-btn');
+
+      // DOM Elements: Step 2
+      const step1Header = document.getElementById('step1-header');
+      const step2Header = document.getElementById('step2-header');
+      const step3Header = document.getElementById('step3-header');
+      const step1View = document.getElementById('step1-view');
+      const step2View = document.getElementById('step2-view');
+      const step3View = document.getElementById('step3-view');
+      const verifyChangeEmailBtn = document.getElementById('verify-change-email-btn');
+      const verifyEmailTarget = document.getElementById('verify-email-target');
+      const verifyForm = document.getElementById('verify-form');
+      const otpInputs = Array.from(document.querySelectorAll('[data-otp-input]'));
+      const otpError = document.getElementById('otp-error');
+      const otpSuccess = document.getElementById('otp-success');
+      const verifySubmitBtn = document.getElementById('verify-submit-btn');
+      const resendBtn = document.getElementById('resend-btn');
+      const resendLabel = document.getElementById('resend-label');
+
+      // DOM Elements: Aside bottom
+      const asideBottomLink = document.getElementById('aside-bottom-link');
+      const asideBottomStatus = document.getElementById('aside-bottom-status');
+
+      // DOM Elements: Step 3 (Profile & Live preview)
+      const step3BackBtn = document.getElementById('step3-back-btn');
+      const profileSecondaryBackBtn = document.getElementById('profile-secondary-back-btn');
+      const navPillRole = document.getElementById('nav-pill-role');
+      const profileForm = document.getElementById('profile-form');
+      const profileError = document.getElementById('profile-error');
+      const profileSuccess = document.getElementById('profile-success');
+      const profileSubmitBtn = document.getElementById('profile-submit-btn');
+
+      // Live Preview elements
+      const nameInput = document.getElementById('full-name');
+      const yearInput = document.getElementById('study-year');
+      const branchInput = document.getElementById('study-branch');
+      const previewName = document.getElementById('preview-name');
+      const previewMeta = document.getElementById('preview-meta');
+      const previewSkills = document.getElementById('preview-skills');
+      const previewLooking = document.getElementById('preview-looking');
+      const skillCount = document.getElementById('skill-count');
+      const skillsGrid = document.getElementById('skills-grid');
+      const skillSearch = document.getElementById('skill-search');
+      const addCustomBtn = document.getElementById('add-custom-skill-btn');
+      const lookingGrid = document.getElementById('looking-grid');
+      const badgePercent = document.getElementById('badge-percent');
+      const badgeBar = document.getElementById('badge-bar');
+
+      // Helpers
+      function showError(el, msg) {
+        if (!el) return;
+        const textSpan = el.querySelector('span:not(.material-symbols-outlined)') || el;
+        textSpan.textContent = msg;
+        el.removeAttribute('hidden');
+      }
+
+      function hideError(el) {
+        if (!el) return;
+        el.setAttribute('hidden', '');
+      }
+
+      // Step transition manager
+      function goToStep(step) {
+        currentStep = step;
+
+        // Hide all views & headers first
+        step1Header.setAttribute('hidden', '');
+        step2Header.setAttribute('hidden', '');
+        step3Header.setAttribute('hidden', '');
+        step1View.setAttribute('hidden', '');
+        step2View.setAttribute('hidden', '');
+        step3View.setAttribute('hidden', '');
+
+        if (step === 1) {
+          step1Header.removeAttribute('hidden');
+          step1View.removeAttribute('hidden');
+          if (asideBottomLink) asideBottomLink.textContent = 'begin.college.edu/join';
+          if (asideBottomStatus) asideBottomStatus.textContent = '38 builders online';
+        } else if (step === 2) {
+          step2Header.removeAttribute('hidden');
+          step2View.removeAttribute('hidden');
+          if (asideBottomLink) asideBottomLink.textContent = 'begin.college.edu/verify';
+          if (asideBottomStatus) asideBottomStatus.textContent = '10m validity';
+          setTimeout(() => {
+            if (otpInputs[0]) otpInputs[0].focus();
+          }, 150);
+        } else if (step === 3) {
+          step3Header.removeAttribute('hidden');
+          step3View.removeAttribute('hidden');
+          if (asideBottomLink) asideBottomLink.textContent = 'begin.college.edu/profile';
+          if (asideBottomStatus) asideBottomStatus.textContent = 'Step 2 of 2';
+          updateIdentityPreview();
+          updateSkillsPreview();
+          updateLookingPreview();
+          applyRoleSettings();
+          setTimeout(() => {
+            if (nameInput) nameInput.focus();
+          }, 150);
+        }
+      }
+
+      // Tab switching between Sign up and Log in
+      function setAuthMode(mode) {
+        currentMode = mode;
+        hideError(emailError);
+        const googleBtnText = document.getElementById('google-btn-text');
+        if (mode === 'signup') {
+          tabSignup.setAttribute('aria-selected', 'true');
+          tabSignup.className = 'flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change bg-surface text-on-surface shadow-sm font-medium';
+          tabLogin.setAttribute('aria-selected', 'false');
+          tabLogin.className = 'flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change text-on-surface-variant hover:text-on-surface';
+          authHeading.textContent = 'Create your student builder account';
+          authSubheading.textContent = 'Use your Gmail or email address to get started.';
+          if (googleBtnText) googleBtnText.textContent = 'Sign up with Google';
+        } else {
+          tabLogin.setAttribute('aria-selected', 'true');
+          tabLogin.className = 'flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change bg-surface text-on-surface shadow-sm font-medium';
+          tabSignup.setAttribute('aria-selected', 'false');
+          tabSignup.className = 'flex-1 py-1.5 rounded-sm font-label text-label-md transition-colors duration-state-change ease-state-change text-on-surface-variant hover:text-on-surface';
+          authHeading.textContent = 'Log in to Begin';
+          authSubheading.textContent = 'Enter your email to receive a sign-in code.';
+          if (googleBtnText) googleBtnText.textContent = 'Log in with Google';
+        }
+      }
+
+      tabSignup.addEventListener('click', () => setAuthMode('signup'));
+      tabLogin.addEventListener('click', () => setAuthMode('login'));
+
+      // Check URL for error message
+      const urlErrorParam = new URLSearchParams(window.location.search).get('error');
+      if (urlErrorParam) {
+        showError(emailError, decodeURIComponent(urlErrorParam));
+      }
+
+      // Email validation (accepts Gmail, college emails, and standard emails)
+      const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
+
+      // Google Auth Modal & Flow Elements
+      const googleAuthBtn = document.getElementById('google-auth-btn');
+      const googleModal = document.getElementById('google-modal');
+      const googleModalClose = document.getElementById('google-modal-close');
+      const googleModalTitle = document.getElementById('google-modal-title');
+      const googleModalSubtitle = document.getElementById('google-modal-subtitle');
+      const googleLoading = document.getElementById('google-modal-loading');
+      const googleLoadingText = document.getElementById('google-loading-text');
+      const googleAccBtns = document.querySelectorAll('.google-acc-btn');
+      const googleUseCustomBtn = document.getElementById('google-use-custom-btn');
+      const googleCustomForm = document.getElementById('google-custom-form');
+      const googleCustomEmail = document.getElementById('google-custom-email');
+
+      function openGoogleModal() {
+        if (!googleModal) return;
+        const isLogin = currentMode === 'login';
+        if (googleModalTitle) googleModalTitle.textContent = isLogin ? 'Log in with Google' : 'Sign up with Google';
+        if (googleModalSubtitle) googleModalSubtitle.textContent = 'Choose an account to continue to Begin';
+        if (googleLoading) googleLoading.setAttribute('hidden', '');
+        if (googleCustomForm) googleCustomForm.setAttribute('hidden', '');
+        googleModal.removeAttribute('hidden');
+      }
+
+      function closeGoogleModal() {
+        if (googleModal) googleModal.setAttribute('hidden', '');
+      }
+
+      // Google Identity Services (GSI) Real Browser Account Integration
+      const googleClientId = '<%= typeof googleClientId !== "undefined" ? googleClientId : "" %>';
+
+      function initGoogleIdentity() {
+        if (!googleClientId) return;
+
+        function trySetupGSI() {
+          if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+            setTimeout(trySetupGSI, 250);
+            return;
+          }
+
+          try {
+            google.accounts.id.initialize({
+              client_id: googleClientId,
+              callback: (response) => {
+                if (!response || !response.credential) return;
+                try {
+                  const payload = parseJwt(response.credential);
+                  if (payload && payload.email) {
+                    proceedWithGoogleAuth(payload.email, payload.name || '');
+                  }
+                } catch (err) {
+                  console.error('Google token decode error:', err);
+                }
+              },
+              auto_select: false,
+              cancel_on_tap_outside: true,
+            });
+
+            // Render Google's native button which automatically pulls accounts from user's browser session
+            const gsiContainer = document.getElementById('g_id_signin');
+            if (gsiContainer) {
+              google.accounts.id.renderButton(gsiContainer, {
+                type: 'standard',
+                theme: 'outline',
+                size: 'large',
+                text: currentMode === 'login' ? 'signin_with' : 'signup_with',
+                shape: 'rectangular',
+                logo_alignment: 'left',
+                width: 380,
+              });
+              // When official Google button is active, hide fallback
+              if (googleAuthBtn) googleAuthBtn.setAttribute('hidden', '');
+            }
+
+            // Also trigger One Tap prompt on page load
+            google.accounts.id.prompt();
+          } catch (e) {
+            console.warn('Google Identity initialization failed:', e);
+          }
+        }
+
+        trySetupGSI();
+      }
+
+      function parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split('')
+            .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+            .join('')
+        );
+        return JSON.parse(jsonPayload);
+      }
+
+      function proceedWithGoogleAuth(email, fullName) {
+        if (!email) return;
+        if (googleLoading) {
+          googleLoading.removeAttribute('hidden');
+          if (googleLoadingText) {
+            googleLoadingText.textContent = (currentMode === 'login' ? 'Logging in as ' : 'Creating account for ') + (fullName || email) + '...';
+          }
+        }
+        setTimeout(() => {
+          window.location.href = '/auth/google?email=' + encodeURIComponent(email) +
+            '&fullName=' + encodeURIComponent(fullName || '') +
+            '&purpose=' + encodeURIComponent(currentMode);
+        }, 300);
+      }
+
+      if (googleAuthBtn) {
+        googleAuthBtn.addEventListener('click', () => {
+          const typedEmail = (collegeEmailInput.value || '').trim();
+          if (typedEmail && validEmailRegex.test(typedEmail)) {
+            proceedWithGoogleAuth(typedEmail, typedEmail.split('@')[0]);
+          } else {
+            openGoogleModal();
+          }
+        });
+      }
+
+      if (googleModalClose) {
+        googleModalClose.addEventListener('click', closeGoogleModal);
+      }
+
+      if (googleModal) {
+        googleModal.addEventListener('click', (e) => {
+          if (e.target === googleModal) closeGoogleModal();
+        });
+      }
+
+      googleAccBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const accEmail = btn.getAttribute('data-google-account');
+          const accName = btn.getAttribute('data-google-name');
+          proceedWithGoogleAuth(accEmail, accName);
+        });
+      });
+
+      if (googleUseCustomBtn) {
+        googleUseCustomBtn.addEventListener('click', () => {
+          if (googleCustomForm) {
+            const isHidden = googleCustomForm.hasAttribute('hidden');
+            if (isHidden) {
+              googleCustomForm.removeAttribute('hidden');
+              googleCustomEmail.focus();
+            } else {
+              googleCustomForm.setAttribute('hidden', '');
+            }
+          }
+        });
+      }
+
+      if (googleCustomForm) {
+        googleCustomForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailVal = (googleCustomEmail.value || '').trim();
+          if (!emailVal || !validEmailRegex.test(emailVal)) {
+            alert('Please enter a valid Google email address (e.g. you@gmail.com)');
+            googleCustomEmail.focus();
+            return;
+          }
+          proceedWithGoogleAuth(emailVal, emailVal.split('@')[0]);
+        });
+      }
+
+      emailForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError(emailError);
+
+        const val = (collegeEmailInput.value || '').trim();
+        if (!val) {
+          showError(emailError, 'Please enter your email address.');
+          collegeEmailInput.focus();
+          return;
+        }
+
+        if (!validEmailRegex.test(val)) {
+          showError(emailError, 'Please enter a valid email address (e.g. you@gmail.com).');
+          collegeEmailInput.focus();
+          return;
+        }
+
+        const originalBtnHtml = sendOtpBtn.innerHTML;
+        sendOtpBtn.disabled = true;
+        sendOtpBtn.classList.add('opacity-70');
+        sendOtpBtn.innerHTML = '<span>Sending code...</span>';
+
+        try {
+          const res = await fetch('/auth/request-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: val, purpose: currentMode })
+          });
+          const data = await res.json();
+
+          if (!res.ok || !data.success) {
+            showError(emailError, data.message || 'Unable to send OTP. Please check your email.');
+            return;
+          }
+
+          currentEmail = val;
+          verifyEmailTarget.textContent = val;
+
+          // Clear previous OTP entries
+          otpInputs.forEach((inp) => {
+            inp.value = '';
+            inp.classList.remove('bg-surface');
+            inp.classList.add('bg-surface-container-low');
+          });
+
+          hideError(otpError);
+          startResendCountdown(30);
+          goToStep(2);
+
+          if (window.history && window.history.pushState) {
+            window.history.pushState({}, '', '/verify?email=' + encodeURIComponent(val) + '&purpose=' + encodeURIComponent(currentMode));
+          }
+        } catch {
+          showError(emailError, 'Connection error. Please try again.');
+        } finally {
+          sendOtpBtn.disabled = false;
+          sendOtpBtn.classList.remove('opacity-70');
+          sendOtpBtn.innerHTML = originalBtnHtml;
+        }
+      });
+
+      // Step 2: Change email button
+      verifyChangeEmailBtn.addEventListener('click', () => {
+        goToStep(1);
+        collegeEmailInput.focus();
+      });
+
+      // Step 2: Resend Countdown Timer
+      let countdownTimer = null;
+      function startResendCountdown(seconds) {
+        if (countdownTimer) clearInterval(countdownTimer);
+        let left = seconds;
+        resendBtn.disabled = true;
+
+        const update = () => {
+          const m = Math.floor(left / 60);
+          const s = String(left % 60).padStart(2, '0');
+          resendLabel.textContent = 'Resend code in ' + m + ':' + s;
+          if (left <= 0) {
+            clearInterval(countdownTimer);
+            resendBtn.disabled = false;
+            resendLabel.textContent = 'Resend code';
+          }
+          left--;
+        };
+
+        update();
+        countdownTimer = setInterval(update, 1000);
+      }
+
+      resendBtn.addEventListener('click', async () => {
+        if (resendBtn.disabled || !currentEmail) return;
+        hideError(otpError);
+        resendBtn.disabled = true;
+        resendLabel.textContent = 'Sending...';
+
+        try {
+          const res = await fetch('/auth/request-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, purpose: currentMode })
+          });
+          const data = await res.json();
+          if (data.success) {
+            startResendCountdown(30);
+          } else {
+            showError(otpError, data.message || 'Failed to resend code');
+            resendBtn.disabled = false;
+            resendLabel.textContent = 'Resend code';
+          }
+        } catch {
+          showError(otpError, 'Network error. Try again.');
+          resendBtn.disabled = false;
+          resendLabel.textContent = 'Resend code';
+        }
+      });
+
+      // Step 2: OTP Input handling (typing, arrow keys, paste)
+      otpInputs.forEach((input, idx) => {
+        input.addEventListener('input', (e) => {
+          hideError(otpError);
+          const cleaned = e.target.value.replace(/\D/g, '');
+          e.target.value = cleaned.slice(-1);
+          if (cleaned) {
+            input.classList.remove('bg-surface-container-low');
+            input.classList.add('bg-surface');
+            if (idx < otpInputs.length - 1) {
+              otpInputs[idx + 1].focus();
+            }
+          } else {
+            input.classList.remove('bg-surface');
+            input.classList.add('bg-surface-container-low');
+          }
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !input.value && idx > 0) {
+            otpInputs[idx - 1].focus();
+          }
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            verifyForm.requestSubmit();
+          }
+        });
+
+        input.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+          if (!pasted) return;
+          pasted.split('').forEach((char, i) => {
+            if (otpInputs[i]) {
+              otpInputs[i].value = char;
+              otpInputs[i].classList.remove('bg-surface-container-low');
+              otpInputs[i].classList.add('bg-surface');
+            }
+          });
+          const nextIdx = Math.min(pasted.length, otpInputs.length - 1);
+          otpInputs[nextIdx].focus();
+          hideError(otpError);
+        });
+      });
+
+      // Step 2 Submit: Verify OTP and transition IMMEDIATELY to Step 3 (Profile replica of code (2).html)
+      verifyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const code = otpInputs.map((i) => i.value).join('');
+        if (code.length < 6) {
+          showError(otpError, 'Please enter all 6 digits.');
+          return;
+        }
+
+        hideError(otpError);
+        const originalVerifyHtml = verifySubmitBtn.innerHTML;
+        verifySubmitBtn.disabled = true;
+        verifySubmitBtn.classList.add('opacity-70');
+        verifySubmitBtn.innerHTML = '<span>Verifying...</span>';
+
+        try {
+          const res = await fetch('/auth/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentEmail, otp: code, purpose: currentMode })
+          });
+          const data = await res.json();
+
+          if (!res.ok || !data.success) {
+            showError(otpError, data.message || 'That code is incorrect or expired.');
+            return;
+          }
+
+          if (otpSuccess) {
+            otpSuccess.removeAttribute('hidden');
+          }
+
+          // Redirect directly to the newly created role page & route
+          setTimeout(() => {
+            if (otpSuccess) otpSuccess.setAttribute('hidden', '');
+            window.location.href = '/role?email=' + encodeURIComponent(currentEmail);
+          }, 600);
+
+        } catch {
+          showError(otpError, 'Connection error. Please try again.');
+        } finally {
+          verifySubmitBtn.disabled = false;
+          verifySubmitBtn.classList.remove('opacity-70');
+          verifySubmitBtn.innerHTML = originalVerifyHtml;
+        }
+      });
+
+
+      // =========================================================================
+      // STEP 3 LOGIC: Live Preview & Profile Form (from code (2).html)            
+      // =========================================================================
+
+      // Back buttons in Step 3
+      if (step3BackBtn) {
+        step3BackBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = '/role?email=' + encodeURIComponent(currentEmail);
+        });
+      }
+      if (profileSecondaryBackBtn) {
+        profileSecondaryBackBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = '/role?email=' + encodeURIComponent(currentEmail);
+        });
+      }
+      if (navPillRole) {
+        navPillRole.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = '/role?email=' + encodeURIComponent(currentEmail);
+        });
+      }
+
+      function calculateProfileCompletion() {
+        let total = 0;
+        const isJoiner = (urlRole === 'joiner');
+
+        // 1. Full name: 20%
+        const name = (nameInput.value || '').trim();
+        if (name.length > 0) total += 20;
+
+        // 2. Year: 15% (20% for joiner)
+        const year = (yearInput.value || '').trim();
+        if (year.length > 0) total += (isJoiner ? 20 : 15);
+
+        // 3. Department / Branch: 15% (20% for joiner)
+        const branch = (branchInput.value || '').trim();
+        if (branch.length > 0) total += (isJoiner ? 20 : 15);
+
+        // 4. Skills: up to 25% (1 skill: 10%, 2 skills: 18%, 3+ skills: 25%)
+        const selectedSkills = skillsGrid.querySelectorAll('[data-skill][aria-pressed="true"]').length;
+        if (selectedSkills >= 3) {
+          total += 25;
+        } else if (selectedSkills === 2) {
+          total += 18;
+        } else if (selectedSkills === 1) {
+          total += 10;
+        }
+
+        // 5. What are you looking for: 15%
+        const selectedLooking = lookingGrid.querySelectorAll('[data-looking][aria-pressed="true"]').length;
+        if (selectedLooking > 0) total += 15;
+
+        // 6. Role / Startup Stage: 10% (Founder / Both only)
+        if (!isJoiner) {
+          const stageChecked = profileForm.querySelector('input[name="startup-stage"]:checked');
+          if (stageChecked) total += 10;
+        }
+
+        total = Math.min(100, Math.max(0, total));
+        badgePercent.textContent = total + '%';
+        badgeBar.style.width = total + '%';
+        const progressEl = badgeBar.parentElement;
+        if (progressEl) progressEl.setAttribute('aria-valuenow', String(total));
+        return total;
+      }
+
+      function updateIdentityPreview() {
+        const name = (nameInput.value || '').trim() || 'Your Name';
+        const year = (yearInput.value || '').trim();
+        const branch = (branchInput.value || '').trim();
+        previewName.textContent = name;
+        if (year && branch) {
+          previewMeta.textContent = year + ' · ' + branch;
+        } else if (year || branch) {
+          previewMeta.textContent = year || branch;
+        } else {
+          previewMeta.textContent = 'Year · Branch';
+        }
+        calculateProfileCompletion();
+      }
+
+      function updateSkillsPreview() {
+        const selected = Array.from(skillsGrid.querySelectorAll('[data-skill][aria-pressed="true"]'))
+          .map((btn) => btn.getAttribute('data-skill'));
+        skillCount.textContent = selected.length + ' of 8 selected';
+        previewSkills.innerHTML = '';
+        selected.forEach((s) => {
+          const span = document.createElement('span');
+          span.className = 'px-2 py-0.5 rounded-md bg-surface border border-outline text-on-surface font-label text-label-sm';
+          span.setAttribute('data-design-text-token', 'label-sm');
+          span.textContent = s;
+          previewSkills.appendChild(span);
+        });
+        calculateProfileCompletion();
+      }
+
+      function updateLookingPreview() {
+        const selected = Array.from(lookingGrid.querySelectorAll('[data-looking][aria-pressed="true"]'))
+          .map((btn) => btn.getAttribute('data-looking'));
+        previewLooking.textContent = selected.length ? 'Looking for: ' + selected.join(', ') : 'Looking for: Open to opportunities';
+        calculateProfileCompletion();
+      }
+
+      function bindSkillButton(btn) {
+        btn.addEventListener('click', () => {
+          const isPressed = btn.getAttribute('aria-pressed') === 'true';
+          const selectedCount = skillsGrid.querySelectorAll('[data-skill][aria-pressed="true"]').length;
+          if (!isPressed && selectedCount >= 8) return;
+          btn.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
+          if (isPressed) {
+            btn.className = 'px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change';
+          } else {
+            btn.className = 'px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md transition-colors duration-state-change ease-state-change';
+          }
+          updateSkillsPreview();
+        });
+      }
+
+      skillsGrid.querySelectorAll('[data-skill]').forEach(bindSkillButton);
+
+      lookingGrid.querySelectorAll('[data-looking]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const isPressed = btn.getAttribute('aria-pressed') === 'true';
+          btn.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
+          if (isPressed) {
+            btn.className = 'px-3.5 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change';
+          } else {
+            btn.className = 'px-3.5 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md transition-colors duration-state-change ease-state-change';
+          }
+          updateLookingPreview();
+        });
+      });
+
+      addCustomBtn.addEventListener('click', () => {
+        const val = (skillSearch.value || '').trim();
+        if (!val) {
+          skillSearch.focus();
+          return;
+        }
+        const selectedCount = skillsGrid.querySelectorAll('[data-skill][aria-pressed="true"]').length;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('data-skill', val);
+        const activate = selectedCount < 8;
+        btn.setAttribute('aria-pressed', activate ? 'true' : 'false');
+        btn.className = activate
+          ? 'px-3 py-1.5 rounded-md bg-primary text-on-primary font-label text-label-md transition-colors duration-state-change ease-state-change'
+          : 'px-3 py-1.5 rounded-md bg-surface text-on-surface-variant border border-outline hover:text-on-surface hover:border-outline-variant font-label text-label-md transition-colors duration-state-change ease-state-change';
+        btn.innerHTML = '<span data-design-text-token="label-md"></span>';
+        btn.querySelector('span').textContent = val;
+        bindSkillButton(btn);
+        skillsGrid.appendChild(btn);
+        skillSearch.value = '';
+        updateSkillsPreview();
+      });
+
+      [nameInput, yearInput, branchInput].forEach((el) => {
+        el.addEventListener('input', updateIdentityPreview);
+      });
+
+      profileForm.querySelectorAll('input[name="startup-stage"]').forEach((radio) => {
+        radio.addEventListener('change', calculateProfileCompletion);
+      });
+
+      // Role detection & dynamic startup-stage hiding
+      const startupStageContainer = document.getElementById('startup-stage-container');
+      const previewRoleBadge = document.getElementById('preview-role-badge');
+      const previewRoleDot = document.getElementById('preview-role-dot');
+      const previewRoleText = document.getElementById('preview-role-text');
+
+      function applyRoleSettings() {
+        if (urlRole === 'joiner') {
+          if (startupStageContainer) startupStageContainer.setAttribute('hidden', '');
+          if (previewRoleBadge) {
+            previewRoleBadge.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-emerald-bg text-accent-emerald font-mono text-label-sm shrink-0';
+          }
+          if (previewRoleDot) previewRoleDot.className = 'w-1.5 h-1.5 rounded-full bg-accent-emerald';
+          if (previewRoleText) previewRoleText.textContent = 'Open to join';
+        } else if (urlRole === 'founder') {
+          if (startupStageContainer) startupStageContainer.removeAttribute('hidden');
+          if (previewRoleBadge) {
+            previewRoleBadge.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-violet-bg text-accent-violet font-mono text-label-sm shrink-0';
+          }
+          if (previewRoleDot) previewRoleDot.className = 'w-1.5 h-1.5 rounded-full bg-accent-violet';
+          if (previewRoleText) previewRoleText.textContent = 'Founder';
+        } else if (urlRole === 'both') {
+          if (startupStageContainer) startupStageContainer.removeAttribute('hidden');
+          if (previewRoleBadge) {
+            previewRoleBadge.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-amber-bg text-on-accent-amber font-mono text-label-sm shrink-0';
+          }
+          if (previewRoleDot) previewRoleDot.className = 'w-1.5 h-1.5 rounded-full bg-accent-amber';
+          if (previewRoleText) previewRoleText.textContent = 'Founder & Joiner';
+        } else {
+          if (startupStageContainer) startupStageContainer.removeAttribute('hidden');
+        }
+      }
+
+      // Profile Submit -> Save to MongoDB
+      profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError(profileError);
+
+        const fullName = (nameInput.value || '').trim();
+        const year = (yearInput.value || '').trim();
+        const branch = (branchInput.value || '').trim();
+
+        if (!fullName) {
+          showError(profileError, 'Please enter your full name.');
+          nameInput.focus();
+          return;
+        }
+
+        const selectedSkills = Array.from(skillsGrid.querySelectorAll('[data-skill][aria-pressed="true"]'))
+          .map((b) => b.getAttribute('data-skill'));
+
+        if (selectedSkills.length < 1) {
+          showError(profileError, 'Please select at least 1 skill (recommended 3 to 8).');
+          return;
+        }
+
+        const selectedLooking = Array.from(lookingGrid.querySelectorAll('[data-looking][aria-pressed="true"]'))
+          .map((b) => b.getAttribute('data-looking'));
+
+        const stageInput = profileForm.querySelector('input[name="startup-stage"]:checked');
+        const startupStage = (urlRole === 'joiner') ? 'N/A' : (stageInput ? stageInput.value : 'Idea');
+        const roleToSave = (urlRole && ['founder', 'joiner', 'both'].includes(urlRole)) ? urlRole : 'founder';
+
+        const originalBtnHtml = profileSubmitBtn.innerHTML;
+        profileSubmitBtn.disabled = true;
+        profileSubmitBtn.classList.add('opacity-70');
+        profileSubmitBtn.innerHTML = '<span>Saving profile...</span>';
+
+        try {
+          const res = await fetch('/auth/profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: currentEmail,
+              fullName,
+              year,
+              branch,
+              role: roleToSave,
+              skills: selectedSkills,
+              lookingFor: selectedLooking,
+              startupStage
+            })
+          });
+
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            showError(profileError, data.message || 'Unable to save profile. Please try again.');
+            return;
+          }
+
+          if (profileSuccess) {
+            profileSuccess.removeAttribute('hidden');
+          }
+
+        } catch {
+          showError(profileError, 'Connection error while saving profile.');
+        } finally {
+          profileSubmitBtn.disabled = false;
+          profileSubmitBtn.classList.remove('opacity-70');
+          profileSubmitBtn.innerHTML = originalBtnHtml;
+        }
+      });
+
+      // Initialize initial step & view
+      goToStep(currentStep);
+      setAuthMode(currentMode);
+      applyRoleSettings();
+      initGoogleIdentity();
+
+    })();
+  </script>
+</body>
+</html>

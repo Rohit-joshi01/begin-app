@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin — Choose your role</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'primary': '#111111',
+        'on-primary': '#FFFFFF',
+        'primary-deep': '#111111',
+        'primary-container': '#F5F5F5',
+        'on-primary-container': '#111111',
+        'secondary': '#F5F5F5',
+        'on-secondary': '#111111',
+        'surface': '#FFFFFF',
+        'on-surface': '#111111',
+        'surface-container-low': '#F5F5F5',
+        'surface-container': '#F5F5F5',
+        'surface-container-high': '#E5E5E5',
+        'on-surface-variant': '#707072',
+        'outline': '#CACACB',
+        'outline-variant': '#E5E5E5',
+        'surface-code': '#111111',
+        'on-dark': '#FFFFFF',
+        'error': '#D30005',
+        'on-error': '#FFFFFF',
+        'success': '#007D48',
+        'on-success': '#FFFFFF',
+        'warning': '#D97706',
+        'on-warning': '#111111',
+        'accent-emerald': '#007D48',
+        'accent-emerald-bg': '#ECFDF5',
+        'on-accent-emerald': '#ECEFEE',
+        'accent-amber': '#D97706',
+        'accent-amber-bg': '#FFFBEB',
+        'on-accent-amber': '#461F07',
+        'accent-violet': '#7C3AED',
+        'accent-violet-bg': '#F5F3FF',
+        'on-accent-violet': '#E7E3ED',
+        'accent-rose': '#D30005',
+        'accent-rose-bg': '#FFF1F2',
+        'on-accent-rose': '#FBFAFA',
+        'accent-teal': '#0A7281',
+        'accent-teal-bg': '#F0FDFA',
+        'on-accent-teal': '#E4E7E6',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '0px',
+        'md': '24px',
+        'lg': '0px',
+        'xl': '12px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '16px',
+        'gutter-lg': '24px',
+        'gutter-xl': '32px',
+        'section': '48px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Instrument Serif"', 'sans-serif'],
+        'headline': ['"Instrument Serif"', 'sans-serif'],
+        'title': ['"Inter"', 'sans-serif'],
+        'body': ['"Inter"', 'sans-serif'],
+        'label': ['"Inter"', 'sans-serif'],
+        'mono': ['"JetBrains Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['56px', { lineHeight: '60px', letterSpacing: '-1.2px', fontWeight: '400' }],
+        'display-lg-mobile': ['38px', { lineHeight: '42px', letterSpacing: '-0.8px', fontWeight: '400' }],
+        'headline-lg': ['40px', { lineHeight: '44px', letterSpacing: '-0.8px', fontWeight: '400' }],
+        'headline-lg-mobile': ['30px', { lineHeight: '34px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'headline-md': ['28px', { lineHeight: '32px', letterSpacing: '-0.4px', fontWeight: '400' }],
+        'headline-sm': ['20px', { lineHeight: '26px', letterSpacing: '-0.3px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '-0.2px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '25px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['12px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '-0.1px', fontWeight: '500' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '500' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.3px', fontWeight: '500' }],
+        'mono-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '150ms',
+        'surface-enter': '220ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }
+    .hero-scrim {
+      background: linear-gradient(180deg, rgba(26, 25, 24, 0.72) 0%, rgba(26, 25, 24, 0.62) 45%, rgba(26, 25, 24, 0.88) 100%);
+    }
+    .panel-row-divider {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+    .panel-list-card {
+      background: rgba(26, 25, 24, 0.56);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .btn-corporate-gradient {
+      background: radial-gradient(120% 140% at 88% 12%, #3B3734 0%, #1C1B1A 45%, #111113 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 3px rgba(0, 0, 0, 0.16);
+    }
+    .btn-corporate-gradient:hover {
+      background: radial-gradient(120% 140% at 88% 12%, #47423E 0%, #232220 45%, #161618 100%);
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary selection:text-on-primary">
+  <div class="min-h-[1024px] grid grid-cols-1 lg:grid-cols-12" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Left Corporate Gradient Brand Sidebar (matches AuthJoin / code (3).html) -->
+    <aside class="lg:col-span-5 relative overflow-hidden bg-on-surface text-surface border-b lg:border-b-0 lg:border-r border-outline flex flex-col justify-between p-gutter-lg sm:p-10 lg:p-12">
+      <img src="/code2-bg.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 hero-scrim" aria-hidden="true"></div>
+
+      <!-- Top Brand Mark -->
+      <div class="relative z-10 flex items-center justify-between gap-4">
+        <a href="/" class="inline-flex items-center bg-surface px-2.5 py-1 rounded-md shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-surface" aria-label="Begin home">
+          <img src="/code2-logo.png" alt="Begin" class="h-6 w-20 object-cover object-center">
+        </a>
+        <span class="font-mono text-label-sm text-surface bg-on-surface border border-outline-variant px-2.5 py-1 rounded-full" data-design-text-token="label-sm">Campus Beta</span>
+      </div>
+
+      <!-- Middle Headline & Value Props -->
+      <div class="relative z-10 my-10 lg:my-0 flex flex-col gap-gutter-lg">
+        <div class="flex flex-col gap-3">
+          <h1 data-component-id="typography-display-on-dark" data-component-type="typography" data-component-variant="display" data-design-text-token="display-lg" class="font-display text-display-lg-mobile md:text-display-lg text-surface text-balance">Where our campus builds startups.</h1>
+          <p data-component-id="typography-body-on-dark" data-component-type="typography" data-component-variant="body" data-design-text-token="body-lg" class="font-body text-body-lg text-surface-container text-pretty max-w-prose">Find co-founders, show your work, and get feedback from builders at your college.</p>
+        </div>
+
+        <!-- 3 Core Value Pillars -->
+        <ul class="flex flex-col rounded-lg panel-list-card divide-y panel-row-divider" aria-label="Community highlights">
+          <li class="flex items-center gap-3.5 p-4">
+            <span class="w-9 h-9 rounded-md bg-accent-violet-bg text-accent-violet flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">handshake</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Find a co-founder</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">Skill-based discovery and an Open Roles board</span>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-3.5 p-4 panel-row-divider">
+            <span class="w-9 h-9 rounded-md bg-accent-emerald-bg text-accent-emerald flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">rocket_launch</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Join a project</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">Apply to roles that match your skills</span>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-3.5 p-4 panel-row-divider">
+            <span class="w-9 h-9 rounded-md bg-accent-amber-bg text-on-accent-amber flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">verified_user</span>
+            </span>
+            <div class="flex flex-col gap-0.5">
+              <span class="font-title text-title-md text-surface" data-design-text-token="title-md">Verified students only</span>
+              <span class="font-body text-body-sm text-surface-container" data-design-text-token="body-sm">College email required</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom Attribution -->
+      <div class="relative z-10 flex items-center justify-between gap-4 pt-4 border-t panel-row-divider">
+        <span class="font-mono text-mono-sm text-surface-container" data-design-text-token="mono-sm">begin.college.edu/onboarding</span>
+        <span class="font-mono text-mono-sm text-surface-container tabular-nums" data-design-text-token="mono-sm">Step 1 of 2</span>
+      </div>
+    </aside>
+
+    <!-- Right White Workspace: Role Selection + Live Role Preview -->
+    <main class="lg:col-span-7 bg-surface flex flex-col justify-between gap-8 p-gutter-lg sm:p-10 lg:p-12">
+      <!-- Top Bar -->
+      <header class="flex flex-wrap items-center justify-between gap-4">
+        <a id="back-btn" href="/verify?email=<%= encodeURIComponent(email) %>" class="inline-flex items-center gap-1.5 font-label text-label-md text-on-surface-variant hover:text-on-surface transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded-sm" data-design-text-token="label-md">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_back</span>
+          <span>Back</span>
+        </a>
+
+        <nav aria-label="Onboarding steps" class="flex items-center gap-1.5">
+          <span class="px-2.5 py-1 rounded-full bg-primary text-on-primary font-mono text-label-sm" data-design-text-token="label-sm">1. Choose role</span>
+          <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant border border-outline font-mono text-label-sm" data-design-text-token="label-sm">2. Your profile</span>
+        </nav>
+      </header>
+
+      <!-- Centered Role Selection + Live Preview inside White Workspace -->
+      <section class="w-full max-w-[580px] mx-auto my-auto flex flex-col gap-6" aria-label="Role selection">
+        <div class="flex flex-col gap-1.5">
+          <h2 data-component-id="typography-display" data-component-type="typography" data-component-variant="display" data-design-text-token="headline-lg" class="font-display text-headline-lg-mobile md:text-headline-lg text-on-surface text-balance">What brings you to Begin?</h2>
+          <p data-component-id="typography-body" data-component-type="typography" data-component-variant="body" data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant text-pretty">You can change this later. You can be both.</p>
+        </div>
+
+        <!-- 3 Structured Role Cards -->
+        <div role="radiogroup" aria-label="Select your role" class="flex flex-col gap-3">
+          <!-- Card 1: Founder -->
+          <button type="button" role="radio" aria-checked="true" data-role-card="founder" data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="relative w-full text-left bg-surface border-2 border-primary rounded-lg p-5 flex items-center justify-between gap-4 transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-md bg-accent-violet-bg text-accent-violet flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">rocket_launch</span>
+              </div>
+              <div class="flex flex-col gap-0.5">
+                <h3 class="font-title text-title-md text-on-surface" data-design-text-token="title-md">Founder</h3>
+                <p class="font-body text-body-sm text-on-surface-variant text-pretty" data-design-text-token="body-sm">I have an idea or an active startup and want a team, feedback and visibility.</p>
+              </div>
+            </div>
+            <span data-role-check class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span>
+            </span>
+          </button>
+
+          <!-- Card 2: Joiner -->
+          <button type="button" role="radio" aria-checked="false" data-role-card="joiner" data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="relative w-full text-left bg-surface border border-outline hover:border-outline-variant rounded-lg p-5 flex items-center justify-between gap-4 transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-md bg-accent-emerald-bg text-accent-emerald flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">code</span>
+              </div>
+              <div class="flex flex-col gap-0.5">
+                <h3 class="font-title text-title-md text-on-surface" data-design-text-token="title-md">Joiner</h3>
+                <p class="font-body text-body-sm text-on-surface-variant text-pretty" data-design-text-token="body-sm">I have skills and want to join a project or startup.</p>
+              </div>
+            </div>
+            <span data-role-check class="hidden w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span>
+            </span>
+          </button>
+
+          <!-- Card 3: Both -->
+          <button type="button" role="radio" aria-checked="false" data-role-card="both" data-component-id="card-interactive" data-component-type="card" data-component-variant="interactive" class="relative w-full text-left bg-surface border border-outline hover:border-outline-variant rounded-lg p-5 flex items-center justify-between gap-4 transition-colors duration-state-change ease-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-md bg-accent-amber-bg text-on-accent-amber flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">hub</span>
+              </div>
+              <div class="flex flex-col gap-0.5">
+                <h3 class="font-title text-title-md text-on-surface" data-design-text-token="title-md">Both</h3>
+                <p class="font-body text-body-sm text-on-surface-variant text-pretty" data-design-text-token="body-sm">I am building something and also open to joining other projects.</p>
+              </div>
+            </div>
+            <span data-role-check class="hidden w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">check</span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Live Preview Strip inside the White Workspace -->
+        <div class="rounded-lg bg-surface-container-low border border-outline p-4 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-full bg-surface-container border border-outline flex items-center justify-center text-on-surface-variant shrink-0" aria-hidden="true">
+              <span class="material-symbols-outlined text-[20px]">person</span>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span id="role-preview-badge" class="px-2 py-0.5 rounded-full bg-accent-violet-bg text-accent-violet font-mono text-label-sm" data-design-text-token="label-sm">Founder</span>
+              </div>
+              <p id="role-preview-desc" class="font-body text-body-sm text-on-surface-variant truncate" data-design-text-token="body-sm">Visible on campus as building a startup</p>
+            </div>
+          </div>
+          <span class="font-mono text-label-sm text-on-surface-variant uppercase shrink-0" data-design-text-token="label-sm">Live preview</span>
+        </div>
+
+        <!-- Continue CTA -->
+        <div class="flex items-center justify-end pt-1">
+          <a id="continue-btn" href="/profile?email=<%= encodeURIComponent(email) %>&role=founder" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-2 rounded-md bg-primary btn-corporate-gradient text-on-primary font-label text-label-lg shadow-sm hover:opacity-90 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-state-change ease-state-change">
+            <span data-design-text-token="label-lg">Continue</span>
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Bottom Attribution -->
+      <footer class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-outline">
+        <span class="font-body text-body-sm text-on-surface-variant" data-design-text-token="body-sm">Role is a profile attribute, not a separate account.</span>
+        <span class="font-mono text-label-sm text-on-surface-variant" data-design-text-token="label-sm">M1.2</span>
+      </footer>
+    </main>
+
+  </div>
+
+  <script>
+    (function () {
+      const email = '<%= email %>';
+      const cards = document.querySelectorAll('[data-role-card]');
+      const roleBadge = document.getElementById('role-preview-badge');
+      const roleDesc = document.getElementById('role-preview-desc');
+      const continueBtn = document.getElementById('continue-btn');
+
+      const roleMeta = {
+        founder: { label: 'Founder', desc: 'Visible on campus as building a startup', cls: 'px-2 py-0.5 rounded-full bg-accent-violet-bg text-accent-violet font-mono text-label-sm' },
+        joiner: { label: 'Joiner', desc: 'Visible on campus as open to join teams', cls: 'px-2 py-0.5 rounded-full bg-accent-emerald-bg text-accent-emerald font-mono text-label-sm' },
+        both: { label: 'Founder & Joiner', desc: 'Building a startup and open to joining teams', cls: 'px-2 py-0.5 rounded-full bg-accent-amber-bg text-on-accent-amber font-mono text-label-sm' }
+      };
+
+      let selectedRole = 'founder';
+
+      function updateContinueLink() {
+        if (continueBtn) {
+          continueBtn.href = '/profile?email=' + encodeURIComponent(email) + '&role=' + encodeURIComponent(selectedRole);
+        }
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          selectedRole = card.getAttribute('data-role-card');
+          cards.forEach((c) => {
+            const isMatch = c.getAttribute('data-role-card') === selectedRole;
+            const check = c.querySelector('[data-role-check]');
+            c.setAttribute('aria-checked', isMatch ? 'true' : 'false');
+            if (isMatch) {
+              c.classList.add('border-2', 'border-primary');
+              c.classList.remove('border', 'border-outline', 'hover:border-outline-variant');
+              if (check) check.classList.remove('hidden');
+            } else {
+              c.classList.remove('border-2', 'border-primary');
+              c.classList.add('border', 'border-outline', 'hover:border-outline-variant');
+              if (check) check.classList.add('hidden');
+            }
+          });
+          if (roleMeta[selectedRole]) {
+            roleBadge.textContent = roleMeta[selectedRole].label;
+            roleBadge.className = roleMeta[selectedRole].cls;
+            roleDesc.textContent = roleMeta[selectedRole].desc;
+          }
+          updateContinueLink();
+        });
+      });
+
+      updateContinueLink();
+    })();
+  </script>
+</body>
+</html>
