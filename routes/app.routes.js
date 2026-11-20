@@ -1,6 +1,9 @@
 import express from "express";
+import { requireAuth } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
+
+// ─── Public ──────────────────────────────────────────────────────────────────
 
 // Landing — render the auth page (defaults to Step 1: Sign up / Log in)
 router.get("/", (req, res) => {
@@ -19,15 +22,17 @@ router.get("/verify", (req, res) => {
   res.render("auth", { initialStep: 2, email, purpose, googleClientId });
 });
 
-// Dedicated Role Selection route: http://localhost:8000/role or /onboarding
-router.get(["/role", "/onboarding", "/onboarding-role"], (req, res) => {
-  const email = req.query.email || "";
+// ─── Protected (requires valid JWT cookie) ───────────────────────────────────
+
+// Role selection: /role or /onboarding or /onboarding-role
+router.get(["/role", "/onboarding", "/onboarding-role"], requireAuth, (req, res) => {
+  const email = req.query.email || req.user.email;
   res.render("role", { email });
 });
 
-// Dedicated Onboarding Profile route: http://localhost:8000/profile
-router.get("/profile", (req, res) => {
-  const email = req.query.email || "";
+// Onboarding profile: /profile
+router.get("/profile", requireAuth, (req, res) => {
+  const email = req.query.email || req.user.email;
   const role = req.query.role || "Founder";
   const purpose = req.query.purpose || "signup";
   const googleClientId = process.env.GOOGLE_CLIENT_ID || "";

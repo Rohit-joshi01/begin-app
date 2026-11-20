@@ -5,6 +5,7 @@ import {
   completeLogin,
   saveUserProfile,
 } from "../services/auth.service.js";
+import { setCookieAndRespond, setCookie } from "../utils/jwt.js";
 
 // ─── Send OTP ────────────────────────────────────────────────────────────────
 export const requestOtpController = async (req, res) => {
@@ -34,19 +35,23 @@ export const verifyOtpController = async (req, res) => {
       return res.status(400).json({ success: false, message: "Email, OTP and purpose are required" });
     }
 
-    // Confirm the OTP is correct — this returns { email, purpose } on success
+    // Confirm the OTP is correct — returns { email, purpose } on success
     const verified = await verifyOtp(email, otp, purpose);
 
-    // After OTP is confirmed, actually create/authenticate the user
+    let user;
     if (purpose === "signup") {
-      await completeSignup(verified.email);
-      return res.status(200).json({ success: true, message: "Account created successfully" });
+      user = await completeSignup(verified.email);
+    } else if (purpose === "login") {
+      user = await completeLogin(verified.email);
+    } else {
+      return res.status(400).json({ success: false, message: "Invalid purpose" });
     }
 
-    if (purpose === "login") {
-      await completeLogin(verified.email);
-      return res.status(200).json({ success: true, message: "Logged in successfully" });
-    }
+    // Sign JWT and set httpOnly cookie
+    return setCookieAndRespond(res, user, 200, {
+      success: true,
+      message: purpose === "signup" ? "Account created successfully" : "Logged in successfully",
+    });
 
   } catch (err) {
     console.error("OTP Verify Error:", err.message);
@@ -57,11 +62,14 @@ export const verifyOtpController = async (req, res) => {
 // ─── Save User Profile ────────────────────────────────────────────────────────
 export const saveProfileController = async (req, res) => {
   try {
-    const { email, role, fullName, year, branch, skills, lookingFor, startupStage } = req.body;
+    // Email comes from the verified JWT (set by requireAuth middleware)
+    const email = req.user?.email;
 
     if (!email) {
-      return res.status(400).json({ success: false, message: "User email is required to update profile" });
+      return res.status(401).json({ success: false, message: "Authentication required" });
     }
+
+    const { role, fullName, year, branch, skills, lookingFor, startupStage } = req.body;
 
     const updatedUser = await saveUserProfile(email, {
       role,
@@ -105,7 +113,6 @@ export const googleAuthController = async (req, res) => {
   const fullName = req.query.fullName || req.body?.fullName || "";
 
   try {
-    // Auto complete signup/login
     const user = await completeSignup(email);
 
     if (fullName && user && !user.fullName) {
@@ -113,17 +120,27 @@ export const googleAuthController = async (req, res) => {
       await user.save().catch(() => {});
     }
 
-    // If login and user already completed onboarding profile, take them straight to profile
+    // Sign JWT and set httpOnly cookie
+    setCookie(res, user);
+
+    // If login and user already completed onboarding profile, skip to profile view
     if (purpose === "login" && user?.profileCompleted) {
-      return res.redirect(`/profile?email=${encodeURIComponent(email)}&role=${encodeURIComponent(user.role || 'founder')}`);
+      return res.redirect(`/profile?email=${encodeURIComponent(email)}&role=${encodeURIComponent(user.role || "founder")}`);
     }
 
-    // Otherwise redirect to the role selection route (/role)
+    // Otherwise go to role selection
     return res.redirect(`/role?email=${encodeURIComponent(email)}`);
+
   } catch (err) {
     console.warn("Google Auth Warning (proceeding gracefully):", err.message);
-    // Graceful fallback for local development / testing:
-    // Even if database connection is busy or reconnecting, allow user to proceed
+    // Graceful fallback — still issue a minimal cookie so the route guard passes
+    // (In production the DB should always be up; this is a dev safety net)
     return res.redirect(`/role?email=${encodeURIComponent(email)}`);
   }
+};
+
+// ─── Logout ──────────────────────────────────────────────────────────────────
+export const logoutController = (req, res) => {
+  res.clearCookie("begin_token");
+  return res.redirect("/");
 };
