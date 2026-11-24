@@ -84,6 +84,12 @@ declare module "path" {
   export default _default;
 }
 
+declare module "node:path" {
+  export * from "path";
+  import path from "path";
+  export default path;
+}
+
 declare module "fs" {
   export function existsSync(path: string): boolean;
   export function mkdirSync(path: string, options?: any): any;
@@ -92,6 +98,12 @@ declare module "fs" {
     mkdirSync: typeof mkdirSync;
   };
   export default _default;
+}
+
+declare module "node:fs" {
+  export * from "fs";
+  import fs from "fs";
+  export default fs;
 }
 
 declare module "resend" {
@@ -206,4 +218,48 @@ declare module "express" {
   }
 
   export default express;
+}
+
+declare module "node:assert" {
+  export function ok(value: any, message?: string | Error): void;
+  export function strictEqual(actual: any, expected: any, message?: string | Error): void;
+  export function deepStrictEqual(actual: any, expected: any, message?: string | Error): void;
+  export function notStrictEqual(actual: any, expected: any, message?: string | Error): void;
+  export function rejects(asyncFn: (() => Promise<any>) | Promise<any>, error?: any, message?: string): Promise<void>;
+  export function throws(block: () => any, error?: any, message?: string): void;
+  const assert: {
+    ok(value: any, message?: string | Error): void;
+    strictEqual(actual: any, expected: any, message?: string | Error): void;
+    deepStrictEqual(actual: any, expected: any, message?: string | Error): void;
+    notStrictEqual(actual: any, expected: any, message?: string | Error): void;
+    rejects(asyncFn: (() => Promise<any>) | Promise<any>, error?: any, message?: string): Promise<void>;
+    throws(block: () => any, error?: any, message?: string): void;
+  };
+  export default assert;
+}
+
+declare module "assert" {
+  export * from "node:assert";
+  import assert from "node:assert";
+  export default assert;
+}
+
+declare module "ejs" {
+  export function render(template: string, data?: object, options?: object): string;
+  export function renderFile(
+    filename: string,
+    data?: object,
+    options?: object,
+    callback?: (err: Error | null, str: string) => void
+  ): void;
+  const ejs: {
+    render(template: string, data?: object, options?: object): string;
+    renderFile(
+      filename: string,
+      data?: object,
+      options?: object,
+      callback?: (err: Error | null, str: string) => void
+    ): void;
+  };
+  export default ejs;
 }
