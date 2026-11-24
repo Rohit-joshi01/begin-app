@@ -1,2 +1,2 @@
-import Startup from "../src/modules/startups/models/startup.model.js";
+import Startup from "../src/modules/startups/models/startup.model.ts";
 export default Startup;

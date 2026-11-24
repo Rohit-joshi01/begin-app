@@ -1,12 +1,12 @@
-import startupRepository from "./startup.repository.js";
-import profileRepository from "../profiles/profile.repository.js";
-import Auth from "../auth/models/auth.model.js";
+import startupRepository from "./startup.repository.ts";
+import profileRepository from "../profiles/profile.repository.ts";
+import Auth from "../auth/models/auth.model.ts";
 import {
   NotFoundError,
   ForbiddenError,
   BadRequestError,
 } from "../../shared/errors/index.js";
-import type { IStartup, StartupStage, StartupVisibility } from "../../shared/types/database.types.js";
+import type { IStartup, StartupStage, StartupVisibility } from "../../shared/types/database.types.ts";
 
 /**
  * Service managing startup entity operations, stealth visibility enforcement,

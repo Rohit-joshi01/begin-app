@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { handleGetPostAdd } from "./post.controller.js";
+import { handleGetPostAdd } from "./post.controller.ts";
 
 const router = Router();
 

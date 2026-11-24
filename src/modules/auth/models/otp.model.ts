@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import type { IEmailOTP, OTPPurpose } from "../../../shared/types/database.types.js";
+import type { IEmailOTP, OTPPurpose } from "../../../shared/types/database.types.ts";
 
 export type { IEmailOTP, OTPPurpose };
 

@@ -5,7 +5,7 @@ import {
   getProfilePage,
   saveProfile,
 } from "./onboarding.controller.js";
-import { requireAuth } from "../../middleware/auth.middleware.js";
+import { requireAuth } from "../../middleware/auth.middleware.ts";
 
 const router = Router();
 

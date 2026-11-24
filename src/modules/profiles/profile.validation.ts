@@ -1,5 +1,5 @@
-import { BadRequestError } from "../../shared/errors/index.js";
-import type { PastWorkLinkType } from "../../shared/types/database.types.js";
+import { BadRequestError } from "../../shared/errors/index.ts";
+import type { PastWorkLinkType } from "../../shared/types/database.types.ts";
 
 /**
  * Validation rules for profile updates, past work entries, and privacy settings.

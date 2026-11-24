@@ -1,1 +1,1 @@
-export * from "../src/infrastructure/external-services/googleAuth.service.js";
+export * from "../src/infrastructure/external-services/googleAuth.service.ts";

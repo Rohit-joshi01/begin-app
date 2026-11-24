@@ -1,1 +1,1 @@
-export * from "../src/modules/startups/startup.controller.js";
+export * from "../src/modules/startups/startup.controller.ts";

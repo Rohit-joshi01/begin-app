@@ -1,1 +1,1 @@
-export * from "../src/modules/posts/post.controller.js";
+export * from "../src/modules/posts/post.controller.ts";

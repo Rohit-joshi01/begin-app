@@ -1,6 +1,6 @@
-import { BadRequestError } from "../../shared/errors/index.js";
-import { sanitizeEmail } from "../../shared/utils/string.utils.js";
-import type { OTPPurpose } from "../../shared/types/database.types.js";
+import { BadRequestError } from "../../shared/errors/index.ts";
+import { sanitizeEmail } from "../../shared/utils/string.utils.ts";
+import type { OTPPurpose } from "../../shared/types/database.types.ts";
 
 /**
  * Validated payload structures for authentication endpoints.

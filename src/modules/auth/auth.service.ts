@@ -1,17 +1,17 @@
 import jwt from "jsonwebtoken";
-import config from "../../config/env.js";
-import authRepository from "./auth.repository.js";
-import otpRepository from "./otp.repository.js";
-import profileRepository from "../profiles/profile.repository.js";
-import sendOTPEmail from "../../infrastructure/email/email.service.js";
-import { generateOTP, hashOTP, verifyOTP } from "../../shared/utils/crypto.utils.js";
+import config from "../../config/env.ts";
+import authRepository from "./auth.repository.ts";
+import otpRepository from "./otp.repository.ts";
+import profileRepository from "../profiles/profile.repository.ts";
+import sendOTPEmail from "../../infrastructure/email/email.service.ts";
+import { generateOTP, hashOTP, verifyOTP } from "../../shared/utils/crypto.utils.ts";
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
   ForbiddenError,
 } from "../../shared/errors/index.js";
-import type { IAuth, OTPPurpose } from "../../shared/types/database.types.js";
+import type { IAuth, OTPPurpose } from "../../shared/types/database.types.ts";
 
 /**
  * Result shape returned after successful user authentication.

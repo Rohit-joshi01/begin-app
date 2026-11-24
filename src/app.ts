@@ -2,16 +2,16 @@ import express, { Application } from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 
-import { attachUser } from "./middleware/auth.middleware.js";
-import { errorHandler } from "./middleware/error.middleware.js";
+import { attachUser } from "./middleware/auth.middleware.ts";
+import { errorHandler } from "./middleware/error.middleware.ts";
 
-import authRoutes from "./modules/auth/index.js";
-import onboardingRoutes from "./modules/onboarding/index.js";
-import profileRoutes from "./modules/profiles/index.js";
-import startupRoutes from "./modules/startups/index.js";
-import discoveryRoutes from "./modules/discovery/index.js";
-import postRoutes from "./modules/posts/index.js";
-import homeRoutes from "./modules/home/index.js";
+import authRoutes from "./modules/auth/index.ts";
+import onboardingRoutes from "./modules/onboarding/index.ts";
+import profileRoutes from "./modules/profiles/index.ts";
+import startupRoutes from "./modules/startups/index.ts";
+import discoveryRoutes from "./modules/discovery/index.ts";
+import postRoutes from "./modules/posts/index.ts";
+import homeRoutes from "./modules/home/index.ts";
 
 /**
  * Express application factory configuring middleware pipelines,

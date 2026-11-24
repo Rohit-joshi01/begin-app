@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import type { IAuth, UserRole } from "../../../shared/types/database.types.js";
+import type { IAuth, UserRole } from "../../../shared/types/database.types.ts";
 
 export type { IAuth, UserRole };
 

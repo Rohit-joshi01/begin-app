@@ -1,1 +1,1 @@
-export * from "../src/shared/helpers/profileCompletion.helper.js";
+export * from "../src/shared/helpers/profileCompletion.helper.ts";

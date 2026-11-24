@@ -1,5 +1,5 @@
-import { BadRequestError } from "../../shared/errors/index.js";
-import type { ProfileRole } from "../../shared/types/database.types.js";
+import { BadRequestError } from "../../shared/errors/index.ts";
+import type { ProfileRole } from "../../shared/types/database.types.ts";
 
 /**
  * Validation rules and types for onboarding steps.

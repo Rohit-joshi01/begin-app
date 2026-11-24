@@ -3,6 +3,6 @@
  * Preserves compatibility with existing npm start/dev commands and tools.
  */
 
-import "./src/server.js";
-export { app } from "./src/app.js";
-export { startServer, stopServer } from "./src/server.js";
+import "./src/server.ts";
+export { app } from "./src/app.ts";
+export { startServer, stopServer } from "./src/server.ts";

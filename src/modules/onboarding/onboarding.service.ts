@@ -1,7 +1,7 @@
-import profileRepository from "../profiles/profile.repository.js";
-import { NotFoundError } from "../../shared/errors/index.js";
-import type { IProfile, ProfileRole } from "../../shared/types/database.types.js";
-import type { ProfileSetupPayload } from "./onboarding.validation.js";
+import profileRepository from "../profiles/profile.repository.ts";
+import { NotFoundError } from "../../shared/errors/index.ts";
+import type { IProfile, ProfileRole } from "../../shared/types/database.types.ts";
+import type { ProfileSetupPayload } from "./onboarding.validation.ts";
 
 /**
  * Onboarding service handling student role selection and initial builder profile setup.

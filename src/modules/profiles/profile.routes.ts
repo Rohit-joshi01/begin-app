@@ -11,8 +11,8 @@ import {
   updatePrivacyApi,
   getPublicProfileApi,
 } from "./profile.controller.js";
-import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.js";
-import { avatarUpload } from "../../infrastructure/storage/multer.storage.js";
+import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
+import { avatarUpload } from "../../infrastructure/storage/multer.storage.ts";
 
 const router = Router();
 

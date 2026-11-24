@@ -1,5 +1,5 @@
-import EmailOTP from "./models/otp.model.js";
-import type { IEmailOTP, OTPPurpose } from "../../shared/types/database.types.js";
+import EmailOTP from "./models/otp.model.ts";
+import type { IEmailOTP, OTPPurpose } from "../../shared/types/database.types.ts";
 
 /**
  * Repository for EmailOTP records.

@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import type { IPost, PostType } from "../../../shared/types/database.types.js";
+import type { IPost, PostType } from "../../../shared/types/database.types.ts";
 
 export type { IPost, PostType };
 

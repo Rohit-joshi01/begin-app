@@ -1,5 +1,5 @@
-import Profile from "./models/profile.model.js";
-import type { IProfile } from "../../shared/types/database.types.js";
+import Profile from "./models/profile.model.ts";
+import type { IProfile } from "../../shared/types/database.types.ts";
 
 /**
  * Profile repository providing data-access methods for the Profile model.

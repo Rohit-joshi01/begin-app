@@ -1,11 +1,11 @@
-import Profile from "../profiles/models/profile.model.js";
-import Startup from "../startups/models/startup.model.js";
-import followRepository from "./follow.repository.js";
-import shortlistRepository from "./shortlist.repository.js";
-import "../auth/models/auth.model.js";
-import { escapeRegex } from "../../shared/utils/string.utils.js";
-import { BadRequestError } from "../../shared/errors/index.js";
-import type { FollowTargetType, ShortlistItemType } from "../../shared/types/database.types.js";
+import Profile from "../profiles/models/profile.model.ts";
+import Startup from "../startups/models/startup.model.ts";
+import followRepository from "./follow.repository.ts";
+import shortlistRepository from "./shortlist.repository.ts";
+import "../auth/models/auth.model.ts";
+import { escapeRegex } from "../../shared/utils/string.utils.ts";
+import { BadRequestError } from "../../shared/errors/index.ts";
+import type { FollowTargetType, ShortlistItemType } from "../../shared/types/database.types.ts";
 
 /**
  * Service managing member and startup discovery, keyword search across

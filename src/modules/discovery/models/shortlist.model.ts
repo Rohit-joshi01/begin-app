@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import type { IShortlist, ShortlistItemType } from "../../../shared/types/database.types.js";
+import type { IShortlist, ShortlistItemType } from "../../../shared/types/database.types.ts";
 
 export type { IShortlist, ShortlistItemType };
 

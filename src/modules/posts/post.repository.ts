@@ -1,5 +1,5 @@
-import Post from "./models/post.model.js";
-import type { IPost } from "../../shared/types/database.types.js";
+import Post from "./models/post.model.ts";
+import type { IPost } from "../../shared/types/database.types.ts";
 
 /**
  * Repository layer for community feed posts.

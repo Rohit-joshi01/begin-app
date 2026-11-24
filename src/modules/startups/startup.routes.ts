@@ -16,7 +16,7 @@ import {
   transferOwnershipApi,
   archiveStartupApi,
 } from "./startup.controller.js";
-import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.js";
+import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
 
 const router = Router();
 

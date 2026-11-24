@@ -1,10 +1,10 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import connectDB from "./connection.js";
-import Auth from "../../modules/auth/models/auth.model.js";
-import Profile from "../../modules/profiles/models/profile.model.js";
-import Startup from "../../modules/startups/models/startup.model.js";
-import Post from "../../modules/posts/models/post.model.js";
+import connectDB from "./connection.ts";
+import Auth from "../../modules/auth/models/auth.model.ts";
+import Profile from "../../modules/profiles/models/profile.model.ts";
+import Startup from "../../modules/startups/models/startup.model.ts";
+import Post from "../../modules/posts/models/post.model.ts";
 
 /**
  * Database seeding script for development and demonstration.

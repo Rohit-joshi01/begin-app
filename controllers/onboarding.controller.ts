@@ -1,1 +1,1 @@
-export * from "../src/modules/onboarding/onboarding.controller.js";
+export * from "../src/modules/onboarding/onboarding.controller.ts";

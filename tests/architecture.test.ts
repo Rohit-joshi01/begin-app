@@ -1,5 +1,5 @@
 import assert from "node:assert";
-import { app } from "../src/app.js";
+import { app } from "../src/app.ts";
 
 /**
  * Architectural and route registration verification tests.
@@ -65,47 +65,47 @@ async function runArchitectureTests(): Promise<void> {
   }
 
   // 3. Verify Module exports
-  const authModule = await import("../src/modules/auth/index.js");
+  const authModule = await import("../src/modules/auth/index.ts");
   assert.ok(authModule.authRoutes, "Auth module must export authRoutes");
   assert.ok(authModule.Auth, "Auth module must export Auth model");
   assert.ok(authModule.EmailOTP, "Auth module must export EmailOTP model");
   assert.ok(authModule.authService, "Auth module must export authService");
 
-  const onboardingModule = await import("../src/modules/onboarding/index.js");
+  const onboardingModule = await import("../src/modules/onboarding/index.ts");
   assert.ok(onboardingModule.onboardingRoutes, "Onboarding module must export onboardingRoutes");
   assert.ok(onboardingModule.onboardingService, "Onboarding module must export onboardingService");
 
-  const profilesModule = await import("../src/modules/profiles/index.js");
+  const profilesModule = await import("../src/modules/profiles/index.ts");
   assert.ok(profilesModule.profileRoutes, "Profiles module must export profileRoutes");
   assert.ok(profilesModule.Profile, "Profiles module must export Profile model");
   assert.ok(profilesModule.profileService, "Profiles module must export profileService");
 
-  const startupsModule = await import("../src/modules/startups/index.js");
+  const startupsModule = await import("../src/modules/startups/index.ts");
   assert.ok(startupsModule.startupRoutes, "Startups module must export startupRoutes");
   assert.ok(startupsModule.Startup, "Startups module must export Startup model");
   assert.ok(startupsModule.startupService, "Startups module must export startupService");
 
-  const discoveryModule = await import("../src/modules/discovery/index.js");
+  const discoveryModule = await import("../src/modules/discovery/index.ts");
   assert.ok(discoveryModule.discoveryRoutes, "Discovery module must export discoveryRoutes");
   assert.ok(discoveryModule.Follow, "Discovery module must export Follow model");
   assert.ok(discoveryModule.Shortlist, "Discovery module must export Shortlist model");
   assert.ok(discoveryModule.discoveryService, "Discovery module must export discoveryService");
 
-  const postsModule = await import("../src/modules/posts/index.js");
+  const postsModule = await import("../src/modules/posts/index.ts");
   assert.ok(postsModule.postRoutes, "Posts module must export postRoutes");
   assert.ok(postsModule.Post, "Posts module must export Post model");
 
-  const homeModule = await import("../src/modules/home/index.js");
+  const homeModule = await import("../src/modules/home/index.ts");
   assert.ok(homeModule.homeRoutes, "Home module must export homeRoutes");
 
   // 4. Verify Backward-Compatibility proxies
-  const legacyAuthModel = await import("../models/auth.model.js").catch(() => import("../models/auth.model.ts"));
+  const legacyAuthModel = await import("../models/auth.model.ts").catch(() => import("../models/auth.model.ts"));
   assert.strictEqual(legacyAuthModel.default, authModule.Auth, "Legacy auth model must re-export Auth");
 
-  const legacyProfileModel = await import("../models/profile.model.js").catch(() => import("../models/profile.model.ts"));
+  const legacyProfileModel = await import("../models/profile.model.ts").catch(() => import("../models/profile.model.ts"));
   assert.strictEqual(legacyProfileModel.default, profilesModule.Profile, "Legacy profile model must re-export Profile");
 
-  const legacyStartupModel = await import("../models/startup.model.js").catch(() => import("../models/startup.model.ts"));
+  const legacyStartupModel = await import("../models/startup.model.ts").catch(() => import("../models/startup.model.ts"));
   assert.strictEqual(legacyStartupModel.default, startupsModule.Startup, "Legacy startup model must re-export Startup");
 
   console.log("PASS: Architecture, route registration, and compatibility tests succeeded!");

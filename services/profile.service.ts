@@ -1,1 +1,1 @@
-export * from "../src/modules/profiles/profile.service.js";
+export * from "../src/modules/profiles/profile.service.ts";

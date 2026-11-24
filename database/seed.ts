@@ -1,4 +1,4 @@
-import { seedDatabase } from "../src/infrastructure/database/seed.js";
+import { seedDatabase } from "../src/infrastructure/database/seed.ts";
 import mongoose from "mongoose";
 
 seedDatabase()

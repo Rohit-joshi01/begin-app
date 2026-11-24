@@ -1,1 +1,1 @@
-export { connectDB, disconnectDB } from "./mongodb/index.js";
+export { connectDB, disconnectDB } from "./mongodb/index.ts";

@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import * as authService from "./auth.service.js";
-import { validateRequestOTPPayload, validateVerifyOTPPayload } from "./auth.validation.js";
-import { getGoogleAuthUrl, getGoogleUserFromCode } from "../../infrastructure/external-services/googleAuth.service.js";
-import config from "../../config/env.js";
+import * as authService from "./auth.service.ts";
+import { validateRequestOTPPayload, validateVerifyOTPPayload } from "./auth.validation.ts";
+import { getGoogleAuthUrl, getGoogleUserFromCode } from "../../infrastructure/external-services/googleAuth.service.ts";
+import config from "../../config/env.ts";
 
 /**
  * Controller handling authentication page views, email OTP verification,

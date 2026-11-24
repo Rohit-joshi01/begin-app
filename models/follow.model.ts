@@ -1,2 +1,2 @@
-import Follow from "../src/modules/discovery/models/follow.model.js";
+import Follow from "../src/modules/discovery/models/follow.model.ts";
 export default Follow;

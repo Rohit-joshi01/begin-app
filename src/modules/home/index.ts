@@ -1,5 +1,5 @@
-import homeRoutes from "./home.routes.js";
-import * as homeController from "./home.controller.js";
+import homeRoutes from "./home.routes.ts";
+import * as homeController from "./home.controller.ts";
 
 export { homeRoutes, homeController };
 export default homeRoutes;

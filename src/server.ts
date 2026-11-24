@@ -1,6 +1,6 @@
-import config from "./config/env.js";
-import { connectDB, disconnectDB } from "./infrastructure/database/connection.js";
-import app from "./app.js";
+import config from "./config/env.ts";
+import { connectDB, disconnectDB } from "./infrastructure/database/connection.ts";
+import app from "./app.ts";
 
 /**
  * Server lifecycle controller.

@@ -1,1 +1,1 @@
-export * from "../src/modules/auth/auth.controller.js";
+export * from "../src/modules/auth/auth.controller.ts";

@@ -1,11 +1,11 @@
 import assert from "node:assert";
 import mongoose from "mongoose";
-import { connectDB, disconnectDB } from "../src/infrastructure/database/connection.js";
-import { Auth, EmailOTP, authService } from "../src/modules/auth/index.js";
-import { Profile, profileService } from "../src/modules/profiles/index.js";
-import { Startup, startupService } from "../src/modules/startups/index.js";
-import { discoveryService } from "../src/modules/discovery/index.js";
-import { calculateProfileCompletion } from "../src/shared/helpers/profileCompletion.helper.js";
+import { connectDB, disconnectDB } from "../src/infrastructure/database/connection.ts";
+import { Auth, EmailOTP, authService } from "../src/modules/auth/index.ts";
+import { Profile, profileService } from "../src/modules/profiles/index.ts";
+import { Startup, startupService } from "../src/modules/startups/index.ts";
+import { discoveryService } from "../src/modules/discovery/index.ts";
+import { calculateProfileCompletion } from "../src/shared/helpers/profileCompletion.helper.ts";
 
 /**
  * End-to-end integration test validating domain logic, database operations,

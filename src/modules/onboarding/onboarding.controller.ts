@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import * as onboardingService from "./onboarding.service.js";
-import { validateRoleSelection, validateProfileSetupPayload } from "./onboarding.validation.js";
+import * as onboardingService from "./onboarding.service.ts";
+import { validateRoleSelection, validateProfileSetupPayload } from "./onboarding.validation.ts";
 
 /**
  * Controller handling onboarding HTTP views and completion endpoints.

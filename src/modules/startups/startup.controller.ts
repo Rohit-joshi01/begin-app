@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import * as startupService from "./startup.service.js";
+import * as startupService from "./startup.service.ts";
 import {
   validateStartupPayload,
   validateOpenRolePayload,

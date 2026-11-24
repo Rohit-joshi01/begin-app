@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { getSuggestedMatches } from "../discovery/discovery.service.js";
+import { getSuggestedMatches } from "../discovery/discovery.service.ts";
 
 /**
  * Controller rendering the root home dashboard and welcome feed.

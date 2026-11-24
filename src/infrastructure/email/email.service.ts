@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import config from "../../config/env.js";
+import config from "../../config/env.ts";
 
 /**
  * Email infrastructure service powered by Resend.

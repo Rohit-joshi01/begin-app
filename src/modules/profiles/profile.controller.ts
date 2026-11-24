@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import * as profileService from "./profile.service.js";
-import { calculateProfileCompletion } from "../../shared/helpers/profileCompletion.helper.js";
-import { validatePastWorkPayload, validatePrivacyPayload } from "./profile.validation.js";
+import * as profileService from "./profile.service.ts";
+import { calculateProfileCompletion } from "../../shared/helpers/profileCompletion.helper.ts";
+import { validatePastWorkPayload, validatePrivacyPayload } from "./profile.validation.ts";
 
 /**
  * Controller managing builder profile presentation and API endpoints.

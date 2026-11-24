@@ -1,5 +1,5 @@
-import { BadRequestError } from "../../shared/errors/index.js";
-import type { StartupStage, StartupVisibility, OpenRoleType } from "../../shared/types/database.types.js";
+import { BadRequestError } from "../../shared/errors/index.ts";
+import type { StartupStage, StartupVisibility, OpenRoleType } from "../../shared/types/database.types.ts";
 
 /**
  * Validation rules and types for startup entities, team invitations, open roles, and milestones.

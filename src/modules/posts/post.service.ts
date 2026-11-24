@@ -1,5 +1,5 @@
-import postRepository from "./post.repository.js";
-import type { IPost } from "../../shared/types/database.types.js";
+import postRepository from "./post.repository.ts";
+import type { IPost } from "../../shared/types/database.types.ts";
 
 /**
  * Posts service handling feed updates and milestone publications.

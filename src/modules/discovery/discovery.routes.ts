@@ -9,7 +9,7 @@ import {
   toggleShortlistApi,
   getShortlistApi,
 } from "./discovery.controller.js";
-import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.js";
+import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
 
 const router = Router();
 

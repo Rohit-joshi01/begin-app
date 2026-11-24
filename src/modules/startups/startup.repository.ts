@@ -1,5 +1,5 @@
-import Startup from "./models/startup.model.js";
-import type { IStartup } from "../../shared/types/database.types.js";
+import Startup from "./models/startup.model.ts";
+import type { IStartup } from "../../shared/types/database.types.ts";
 
 /**
  * Repository layer for the Startup model.

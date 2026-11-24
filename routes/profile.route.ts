@@ -1,2 +1,2 @@
-import profileRouter from "../src/modules/profiles/profile.routes.js";
+import profileRouter from "../src/modules/profiles/profile.routes.ts";
 export default profileRouter;

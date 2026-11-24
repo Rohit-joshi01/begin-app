@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import config from "../config/env.js";
-import Profile from "../modules/profiles/models/profile.model.js";
+import config from "../config/env.ts";
+import Profile from "../modules/profiles/models/profile.model.ts";
 
 /**
  * Authentication and authorization middleware suite.

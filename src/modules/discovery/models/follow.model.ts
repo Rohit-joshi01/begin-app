@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import type { IFollow, FollowTargetType } from "../../../shared/types/database.types.js";
+import type { IFollow, FollowTargetType } from "../../../shared/types/database.types.ts";
 
 export type { IFollow, FollowTargetType };
 

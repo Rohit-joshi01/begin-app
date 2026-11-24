@@ -1,2 +1,2 @@
-import discoveryRouter from "../src/modules/discovery/discovery.routes.js";
+import discoveryRouter from "../src/modules/discovery/discovery.routes.ts";
 export default discoveryRouter;

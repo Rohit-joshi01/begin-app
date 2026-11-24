@@ -1,6 +1,6 @@
 import { createHmac, randomInt, timingSafeEqual } from "crypto";
 import { Buffer } from "node:buffer";
-import config from "../../config/env.js";
+import config from "../../config/env.ts";
 
 /**
  * Cryptographic utility functions for OTP generation, hashing, and verification.

@@ -1,2 +1,2 @@
-import EmailOTP from "../src/modules/auth/models/otp.model.js";
+import EmailOTP from "../src/modules/auth/models/otp.model.ts";
 export default EmailOTP;

@@ -1,1 +1,1 @@
-export * from "../src/modules/discovery/discovery.controller.js";
+export * from "../src/modules/discovery/discovery.controller.ts";

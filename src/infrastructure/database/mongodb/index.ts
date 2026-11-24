@@ -1,1 +1,1 @@
-export { connectDB, disconnectDB } from "./connection.js";
+export { connectDB, disconnectDB } from "./connection.ts";

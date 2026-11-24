@@ -1,5 +1,5 @@
-import Shortlist from "./models/shortlist.model.js";
-import type { IShortlist } from "../../shared/types/database.types.js";
+import Shortlist from "./models/shortlist.model.ts";
+import type { IShortlist } from "../../shared/types/database.types.ts";
 
 /**
  * Repository for Shortlist documents. All methods return plain objects, never raw

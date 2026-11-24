@@ -1,5 +1,5 @@
-import Auth from "./models/auth.model.js";
-import type { IAuth } from "../../shared/types/database.types.js";
+import Auth from "./models/auth.model.ts";
+import type { IAuth } from "../../shared/types/database.types.ts";
 
 /**
  * Repository for Auth records.

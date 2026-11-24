@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import * as discoveryService from "./discovery.service.js";
-import { validateFollowPayload, validateShortlistPayload } from "./discovery.validation.js";
+import * as discoveryService from "./discovery.service.ts";
+import { validateFollowPayload, validateShortlistPayload } from "./discovery.validation.ts";
 
 /**
  * Controller handling campus discovery views, directory searches,

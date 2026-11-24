@@ -1,5 +1,5 @@
 import { Schema, model, type Model } from "mongoose";
-import { calculateProfileCompletion } from "../../../shared/helpers/profileCompletion.helper.js";
+import { calculateProfileCompletion } from "../../../shared/helpers/profileCompletion.helper.ts";
 import type {
   IProfile,
   IPastWork,

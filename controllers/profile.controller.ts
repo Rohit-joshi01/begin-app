@@ -1,1 +1,1 @@
-export * from "../src/modules/profiles/profile.controller.js";
+export * from "../src/modules/profiles/profile.controller.ts";

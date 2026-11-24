@@ -1,2 +1,2 @@
-import startupRouter from "../src/modules/startups/startup.routes.js";
+import startupRouter from "../src/modules/startups/startup.routes.ts";
 export default startupRouter;

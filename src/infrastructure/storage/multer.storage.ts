@@ -1,7 +1,7 @@
 import multer, { Instance } from "multer";
 import path from "path";
 import fs from "fs";
-import config from "../../config/env.js";
+import config from "../../config/env.ts";
 
 /**
  * Storage infrastructure service configuring Multer disk storage,

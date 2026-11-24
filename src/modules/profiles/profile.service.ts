@@ -1,7 +1,7 @@
-import profileRepository from "./profile.repository.js";
-import { calculateProfileCompletion } from "../../shared/helpers/profileCompletion.helper.js";
-import { NotFoundError, BadRequestError } from "../../shared/errors/index.js";
-import type { IProfile, IPrivacySettings, PastWorkLinkType } from "../../shared/types/database.types.js";
+import profileRepository from "./profile.repository.ts";
+import { calculateProfileCompletion } from "../../shared/helpers/profileCompletion.helper.ts";
+import { NotFoundError, BadRequestError } from "../../shared/errors/index.ts";
+import type { IProfile, IPrivacySettings, PastWorkLinkType } from "../../shared/types/database.types.ts";
 
 /**
  * Profile service managing builder profile data, past work portfolios,

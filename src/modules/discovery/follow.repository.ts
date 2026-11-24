@@ -1,5 +1,5 @@
-import Follow from "./models/follow.model.js";
-import type { IFollow } from "../../shared/types/database.types.js";
+import Follow from "./models/follow.model.ts";
+import type { IFollow } from "../../shared/types/database.types.ts";
 
 /**
  * Repository for Follow documents. All methods return plain objects, never raw
