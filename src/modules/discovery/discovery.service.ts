@@ -132,8 +132,6 @@ export async function searchStartups(
     obj.isMember = Boolean(isMember);
 
     if (obj.visibility === "STEALTH" && !isMember) {
-      obj.name = "Stealth Project";
-      obj.pitch = "Project details are private while in stealth mode.";
       delete obj.problem;
       delete obj.solution;
       delete obj.links;
@@ -282,8 +280,6 @@ export async function getSuggestedMatches(userId: string | any): Promise<any> {
 
     const obj = startup.toObject();
     if (obj.visibility === "STEALTH") {
-      obj.name = "Stealth Project";
-      obj.pitch = "Project details are private while in stealth mode.";
       delete obj.problem;
       delete obj.solution;
       delete obj.links;
@@ -439,8 +435,6 @@ export async function getShortlist(userId: string | any): Promise<any> {
 
     const obj = startup.toObject();
     if (obj.visibility === "STEALTH" && !isMember) {
-      obj.name = "Stealth Project";
-      obj.pitch = "Project details are private while in stealth mode.";
       delete obj.problem;
       delete obj.solution;
       delete obj.links;

@@ -105,8 +105,9 @@ async function runIntegrationTests(): Promise<void> {
     newStartup._id,
     new mongoose.Types.ObjectId() // different requester
   );
-  assert.strictEqual(nonMemberView.name, "Stealth Project", "Name should be masked in stealth mode");
+  assert.strictEqual(nonMemberView.name, "Integration Venture", "Startup name should be preserved");
   assert.strictEqual(nonMemberView.problem, undefined, "Problem should be omitted in stealth mode");
+  assert.strictEqual(nonMemberView.solution, undefined, "Solution should be omitted in stealth mode");
   assert.strictEqual(nonMemberView.openRoles.length, 1, "Open roles must remain discoverable");
 
   // 5. Discovery & Search Module

@@ -112,7 +112,6 @@ export async function getStartupById(startupId: string | any, requesterUserId: s
   const startupObject: any = (startup as any).toObject ? (startup as any).toObject() : { ...startup };
 
   if (startupObject.visibility === "STEALTH" && !isOwner && !isMember) {
-    startupObject.name = "Stealth Project";
     delete startupObject.problem;
     delete startupObject.solution;
     if (startupObject.links) {
@@ -166,7 +165,6 @@ export async function listStartups(queryParams: any = {}, requesterUserId: strin
     const sObj = s.toObject ? s.toObject() : { ...s };
 
     if (sObj.visibility === "STEALTH" && !isOwner && !isMember) {
-      sObj.name = "Stealth Project";
       delete sObj.problem;
       delete sObj.solution;
       if (sObj.links) {
