@@ -27,5 +27,5 @@
     "utils/**/*.ts",
     "database/**/*.ts"
   ],
-  "exclude": ["node_modules", "public"]
+  "exclude": ["node_modules", "public", "dist"]
 }

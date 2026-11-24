@@ -5,18 +5,19 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "nodemon index.js",
+    "start": "tsx index.ts",
+    "dev": "tsx watch index.ts",
     "seed": "tsx database/seed.ts",
     "test": "tsx tests/architecture.test.ts && tsx tests/views.test.ts && tsx tests/integration.test.ts",
     "test:postgres": "tsx tests/postgres.test.ts",
+    "typecheck": "tsc --noEmit",
+    "typecheck:db": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:check": "drizzle-kit check",
-    "db:studio": "drizzle-kit studio",
-    "typecheck:db": "tsc --noEmit"
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.5",
