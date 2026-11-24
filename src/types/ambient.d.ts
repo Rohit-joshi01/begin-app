@@ -64,6 +64,88 @@ declare module "node:crypto" {
   export * from "crypto";
 }
 
+declare function fetch(input: any, init?: any): Promise<any>;
+
+declare class URLSearchParams {
+  constructor(init?: any);
+  append(name: string, value: string): void;
+  toString(): string;
+}
+
+declare module "path" {
+  export function resolve(...paths: string[]): string;
+  export function extname(path: string): string;
+  export function join(...paths: string[]): string;
+  const _default: {
+    resolve: typeof resolve;
+    extname: typeof extname;
+    join: typeof join;
+  };
+  export default _default;
+}
+
+declare module "fs" {
+  export function existsSync(path: string): boolean;
+  export function mkdirSync(path: string, options?: any): any;
+  const _default: {
+    existsSync: typeof existsSync;
+    mkdirSync: typeof mkdirSync;
+  };
+  export default _default;
+}
+
+declare module "resend" {
+  export class Resend {
+    constructor(apiKey: string);
+    emails: {
+      send(payload: any): Promise<{ data: any; error: any }>;
+    };
+  }
+}
+
+declare module "cookie-parser" {
+  export default function cookieParser(...args: any[]): any;
+}
+
+declare module "multer" {
+  export interface File {
+    fieldname: string;
+    originalname: string;
+    encoding: string;
+    mimetype: string;
+    size: number;
+    destination: string;
+    filename: string;
+    path: string;
+    buffer: Buffer;
+  }
+
+  export interface StorageEngine {
+    _handleFile(req: any, file: any, cb: any): void;
+    _removeFile(req: any, file: any, cb: any): void;
+  }
+
+  export function diskStorage(options: any): StorageEngine;
+
+  export interface Instance {
+    single(fieldName: string): any;
+    array(fieldName: string, maxCount?: number): any;
+    fields(fields: any[]): any;
+    none(): any;
+    any(): any;
+  }
+
+  export function diskStorage(options: any): StorageEngine;
+
+  interface MulterFactory {
+    (options?: any): Instance;
+    diskStorage(options: any): StorageEngine;
+  }
+
+  const multer: MulterFactory;
+  export default multer;
+}
+
 declare module "jsonwebtoken" {
   export function sign(payload: string | Buffer | object, secretOrPrivateKey: string | Buffer, options?: any): string;
   export function verify(token: string, secretOrPublicKey: string | Buffer, options?: any): any;
@@ -108,12 +190,13 @@ declare module "express" {
 
   export function Router(options?: any): Router;
 
-  interface Express {
+  export interface Express {
     [key: string]: any;
     use(...handlers: any[]): this;
     set(setting: string, val: any): this;
     listen(port: number, callback?: () => void): any;
   }
+  export type Application = Express;
 
   function express(): Express;
   namespace express {
