@@ -8,7 +8,7 @@ import {
   toggleFollowApi,
   toggleShortlistApi,
   getShortlistApi,
-} from "./discovery.controller.js";
+} from "./discovery.controller.ts";
 import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
 
 const router = Router();

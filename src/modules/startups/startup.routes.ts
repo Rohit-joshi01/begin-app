@@ -15,7 +15,7 @@ import {
   addMilestoneApi,
   transferOwnershipApi,
   archiveStartupApi,
-} from "./startup.controller.js";
+} from "./startup.controller.ts";
 import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
 
 const router = Router();

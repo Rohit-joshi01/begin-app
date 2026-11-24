@@ -11,7 +11,7 @@ import type {
   IPrivacySettings,
   IFounderDetails,
   IJoinerDetails,
-} from "../../../shared/types/database.types.js";
+} from "../../../shared/types/database.types.ts";
 
 export type {
   IProfile,

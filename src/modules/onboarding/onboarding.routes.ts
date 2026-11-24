@@ -4,7 +4,7 @@ import {
   saveRole,
   getProfilePage,
   saveProfile,
-} from "./onboarding.controller.js";
+} from "./onboarding.controller.ts";
 import { requireAuth } from "../../middleware/auth.middleware.ts";
 
 const router = Router();

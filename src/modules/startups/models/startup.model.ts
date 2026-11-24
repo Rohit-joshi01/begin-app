@@ -12,7 +12,7 @@ import type {
   OpenRoleType,
   OpenRoleStatus,
   IStartupLinks,
-} from "../../../shared/types/database.types.js";
+} from "../../../shared/types/database.types.ts";
 
 export type {
   IStartup,

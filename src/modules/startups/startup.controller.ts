@@ -4,7 +4,7 @@ import {
   validateStartupPayload,
   validateOpenRolePayload,
   validateMilestonePayload,
-} from "./startup.validation.js";
+} from "./startup.validation.ts";
 
 /**
  * Controller handling startup page rendering, REST endpoints,

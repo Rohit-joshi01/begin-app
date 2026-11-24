@@ -10,7 +10,7 @@ import {
   deletePastWorkApi,
   updatePrivacyApi,
   getPublicProfileApi,
-} from "./profile.controller.js";
+} from "./profile.controller.ts";
 import { requireAuth, requireOnboarded } from "../../middleware/auth.middleware.ts";
 import { avatarUpload } from "../../infrastructure/storage/multer.storage.ts";
 

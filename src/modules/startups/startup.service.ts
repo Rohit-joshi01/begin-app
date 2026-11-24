@@ -5,7 +5,7 @@ import {
   NotFoundError,
   ForbiddenError,
   BadRequestError,
-} from "../../shared/errors/index.js";
+} from "../../shared/errors/index.ts";
 import type { IStartup, StartupStage, StartupVisibility } from "../../shared/types/database.types.ts";
 
 /**

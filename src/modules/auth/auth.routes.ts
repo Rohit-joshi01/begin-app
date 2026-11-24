@@ -7,7 +7,7 @@ import {
   logout,
   handleGoogleLogin,
   handleGoogleCallback,
-} from "./auth.controller.js";
+} from "./auth.controller.ts";
 
 const router = Router();
 

@@ -10,7 +10,7 @@ import {
   ConflictError,
   NotFoundError,
   ForbiddenError,
-} from "../../shared/errors/index.js";
+} from "../../shared/errors/index.ts";
 import type { IAuth, OTPPurpose } from "../../shared/types/database.types.ts";
 
 /**
