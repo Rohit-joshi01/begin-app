@@ -9,8 +9,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
-    "seed": "node database/seed.js",
-    "test": "node tests/architecture.test.js && node tests/views.test.js && node tests/integration.test.js",
+    "seed": "tsx database/seed.ts",
+    "test": "tsx tests/architecture.test.ts && tsx tests/views.test.ts && tsx tests/integration.test.ts",
     "test:postgres": "tsx tests/postgres.test.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
