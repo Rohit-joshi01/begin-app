@@ -12,31 +12,59 @@ export async function renderDiscoveryPage(req: Request, res: Response) {
     const userId = req.user?.userId;
     const { q, skill, year, branch, availability, lookingFor, stage, industry, hasOpenRoles, tab } = req.query as Record<string, string>;
 
-    const memberFilters = { skill, year, branch, availability, lookingFor };
-    const startupFilters = { stage, industry, hasOpenRoles };
+    const memberFilters = {
+      skill: skill || "",
+      year: year || "",
+      branch: branch || "",
+      availability: availability || "",
+      lookingFor: lookingFor || "",
+    };
 
-    const [members, startups, suggested, following, shortlistIds] = await Promise.all([
-      discoveryService.searchMembers(q || "", memberFilters, userId),
-      discoveryService.searchStartups(q || "", startupFilters, userId),
-      discoveryService.getSuggestedMatches(userId),
-      discoveryService.getFollowingIds(userId),
-      discoveryService.getShortlistIds(userId),
-    ]);
+    const startupFilters = {
+      stage: stage || "",
+      industry: industry || "",
+      hasOpenRoles: hasOpenRoles || "",
+    };
 
-    const activeTab = tab === "startups" ? "startups" : "members";
+    const currentTab = (tab as string) || "members";
+
+    let members: any[] = [];
+    let startups: any[] = [];
+    let following = { memberIds: [] as string[], startupIds: [] as string[] };
+    let shortlistIds = { memberIds: [] as string[], startupIds: [] as string[] };
+
+    if (userId) {
+      [following, shortlistIds] = await Promise.all([
+        discoveryService.getFollowingIds(userId),
+        discoveryService.getShortlistIds(userId),
+      ]);
+    }
+
+    if (currentTab === "shortlist" && userId) {
+      const shortlistData = await discoveryService.getShortlist(userId);
+      members = shortlistData.members || [];
+      startups = shortlistData.startups || [];
+    } else {
+      const [searchedMembers, searchedStartups] = await Promise.all([
+        discoveryService.searchMembers(q || "", memberFilters, userId),
+        discoveryService.searchStartups(q || "", startupFilters, userId),
+      ]);
+      members = searchedMembers;
+      startups = searchedStartups;
+    }
 
     return res.render("discovery/index", {
-      user: res.locals.user,
+      user: res.locals.user || req.user,
       members,
       startups,
-      suggested,
-      followingMemberIds: following.memberIds,
-      followingStartupIds: following.startupIds,
-      shortlistedMemberIds: shortlistIds.memberIds,
-      shortlistedStartupIds: shortlistIds.startupIds,
+      followingMemberIds: following.memberIds || [],
+      followingStartupIds: following.startupIds || [],
+      shortlistedMemberIds: shortlistIds.memberIds || [],
+      shortlistedStartupIds: shortlistIds.startupIds || [],
       query: q || "",
-      filters: { ...memberFilters, ...startupFilters },
-      activeTab,
+      tab: currentTab,
+      memberFilters,
+      startupFilters,
     });
   } catch (error: any) {
     return res.status(500).render("error", {
