@@ -72,7 +72,7 @@ export async function save(startupDoc: any): Promise<IStartup> {
  * Apply atomic updates to a startup by its ID and return the updated plain object.
  */
 export async function updateById(startupId: string | any, updateData: any): Promise<IStartup | null> {
-  const doc = await Startup.findByIdAndUpdate(startupId, updateData, { new: true }).lean<IStartup>();
+  const doc = await Startup.findByIdAndUpdate(startupId, updateData, { returnDocument: "after" }).lean<IStartup>();
   return doc || null;
 }
 

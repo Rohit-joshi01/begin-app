@@ -48,7 +48,7 @@ export async function upsertByUserId(userId: string | any, data: Partial<IProfil
   const doc = await Profile.findOneAndUpdate(
     { userId },
     { ...data, userId },
-    { upsert: true, new: true, setDefaultsOnInsert: true }
+    { upsert: true, returnDocument: "after", setDefaultsOnInsert: true }
   ).lean<IProfile>();
   return doc as IProfile;
 }
@@ -66,7 +66,7 @@ export async function save(profileDoc: any): Promise<IProfile> {
  */
 export async function updateByUserId(userId: string | any, updateData: any): Promise<IProfile | null> {
   const doc = await Profile.findOneAndUpdate({ userId }, updateData, {
-    new: true,
+    returnDocument: "after",
   }).lean<IProfile>();
   return doc || null;
 }

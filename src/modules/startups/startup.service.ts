@@ -102,15 +102,17 @@ export async function getStartupById(startupId: string | any, requesterUserId: s
 
   const isOwner = Boolean(requesterIdString && ownerIdString === requesterIdString);
   const isMember = Boolean(
-    requesterIdString &&
-      startup.teamMembers?.some(
-        (m: any) => ((m.userId as any)?._id || m.userId)?.toString() === requesterIdString
-      )
+    isOwner ||
+      (requesterIdString &&
+        startup.teamMembers?.some(
+          (m: any) => ((m.userId as any)?._id || m.userId)?.toString() === requesterIdString
+        ))
   );
 
-  const startupObject: any = { ...startup };
+  const startupObject: any = (startup as any).toObject ? (startup as any).toObject() : { ...startup };
 
   if (startupObject.visibility === "STEALTH" && !isOwner && !isMember) {
+    startupObject.name = "Stealth Project";
     delete startupObject.problem;
     delete startupObject.solution;
     if (startupObject.links) {
@@ -154,15 +156,17 @@ export async function listStartups(queryParams: any = {}, requesterUserId: strin
     const ownerIdString = (s.ownerId?._id || s.ownerId)?.toString();
     const isOwner = Boolean(requesterIdString && ownerIdString === requesterIdString);
     const isMember = Boolean(
-      requesterIdString &&
-        s.teamMembers?.some(
-          (m: any) => (m.userId?._id || m.userId)?.toString() === requesterIdString
-        )
+      isOwner ||
+        (requesterIdString &&
+          s.teamMembers?.some(
+            (m: any) => (m.userId?._id || m.userId)?.toString() === requesterIdString
+          ))
     );
 
-    const sObj = { ...s };
+    const sObj = s.toObject ? s.toObject() : { ...s };
 
     if (sObj.visibility === "STEALTH" && !isOwner && !isMember) {
+      sObj.name = "Stealth Project";
       delete sObj.problem;
       delete sObj.solution;
       if (sObj.links) {

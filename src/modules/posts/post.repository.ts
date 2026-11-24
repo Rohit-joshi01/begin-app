@@ -33,7 +33,7 @@ async function findById(id: string | any): Promise<IPost | null> {
 }
 
 async function updateById(id: string | any, data: Partial<IPost>): Promise<IPost | null> {
-  const doc = await Post.findByIdAndUpdate(id, data, { new: true }).lean<IPost>();
+  const doc = await Post.findByIdAndUpdate(id, data, { returnDocument: "after" }).lean<IPost>();
   return doc || null;
 }
 

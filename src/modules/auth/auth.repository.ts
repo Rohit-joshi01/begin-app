@@ -47,7 +47,7 @@ export async function create(data: Partial<IAuth>): Promise<IAuth> {
  * Apply a partial update to the Auth record with the given ID.
  */
 export async function updateById(id: string | any, data: Partial<IAuth>): Promise<IAuth | null> {
-  const doc = await Auth.findByIdAndUpdate(id, data, { new: true }).lean<IAuth>();
+  const doc = await Auth.findByIdAndUpdate(id, data, { returnDocument: "after" }).lean<IAuth>();
   return doc || null;
 }
 
@@ -76,7 +76,7 @@ export async function upsertByEmail(email: string, data: Partial<IAuth>): Promis
   const doc = await Auth.findOneAndUpdate(
     { email },
     data,
-    { upsert: true, new: true, setDefaultsOnInsert: true }
+    { upsert: true, returnDocument: "after", setDefaultsOnInsert: true }
   ).lean<IAuth>();
   return doc as IAuth;
 }
