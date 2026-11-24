@@ -99,13 +99,13 @@ async function runArchitectureTests(): Promise<void> {
   assert.ok(homeModule.homeRoutes, "Home module must export homeRoutes");
 
   // 4. Verify Backward-Compatibility proxies
-  const legacyAuthModel = await import("../models/auth.model.js");
+  const legacyAuthModel = await import("../models/auth.model.js").catch(() => import("../models/auth.model.ts"));
   assert.strictEqual(legacyAuthModel.default, authModule.Auth, "Legacy auth model must re-export Auth");
 
-  const legacyProfileModel = await import("../models/profile.model.js");
+  const legacyProfileModel = await import("../models/profile.model.js").catch(() => import("../models/profile.model.ts"));
   assert.strictEqual(legacyProfileModel.default, profilesModule.Profile, "Legacy profile model must re-export Profile");
 
-  const legacyStartupModel = await import("../models/startup.model.js");
+  const legacyStartupModel = await import("../models/startup.model.js").catch(() => import("../models/startup.model.ts"));
   assert.strictEqual(legacyStartupModel.default, startupsModule.Startup, "Legacy startup model must re-export Startup");
 
   console.log("PASS: Architecture, route registration, and compatibility tests succeeded!");
