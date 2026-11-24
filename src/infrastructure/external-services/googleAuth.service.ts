@@ -51,7 +51,7 @@ export const getGoogleUserFromCode = async (code: string): Promise<any> => {
     body: tokenParams.toString(),
   });
 
-  const tokenData = await tokenResponse.json();
+  const tokenData: any = await tokenResponse.json();
 
   if (!tokenResponse.ok) {
     throw new Error(tokenData.error_description || tokenData.error || "Failed to exchange Google authorization code.");
@@ -63,7 +63,7 @@ export const getGoogleUserFromCode = async (code: string): Promise<any> => {
     },
   });
 
-  const userData = await userResponse.json();
+  const userData: any = await userResponse.json();
 
   if (!userResponse.ok) {
     throw new Error(userData.error_description || "Failed to fetch user details from Google.");
