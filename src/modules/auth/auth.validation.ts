@@ -27,10 +27,12 @@ export const loginSchema = z.object({
     .min(1, "Password is required."),
 });
 
-export const googleCallbackQuerySchema = z.object({
-  code: z.string().optional(),
-  error: z.string().optional(),
-});
+export const googleCallbackQuerySchema = z
+  .object({
+    code: z.string().optional(),
+    error: z.string().optional(),
+  })
+  .passthrough();
 
 export type SignupInput = z.infer<typeof signupSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;

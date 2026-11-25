@@ -163,6 +163,30 @@ async function runValidationTests() {
   assert.ok(Array.isArray(responseData.error.details), "Details must be an array of field errors");
   assert.ok(responseData.message, "Top-level message must be present for frontend compatibility");
 
+  // 7. Test Express query getter compatibility (e.g. Google OAuth callback)
+  console.log("Testing Express 5 query getter compatibility...");
+  const express = (await import("express")).default;
+  const expressReq = Object.create((express as any).request);
+  Object.defineProperty(expressReq, "query", {
+    get() {
+      return { code: "google_auth_code_123", state: "state_val" };
+    },
+    enumerable: true,
+    configurable: true,
+  });
+
+  const queryMiddleware = validate({
+    query: (await import("../src/modules/auth/auth.validation.ts")).googleCallbackQuerySchema,
+  });
+
+  let queryNextCalled = false;
+  await queryMiddleware(expressReq, mockRes, () => {
+    queryNextCalled = true;
+  });
+
+  assert.strictEqual(queryNextCalled, true, "Query middleware must succeed on Express 5 getter");
+  assert.strictEqual(expressReq.query.code, "google_auth_code_123", "Query code must be set");
+
   console.log("ALL ZOD VALIDATION TESTS PASSED CLEANLY!");
 }
 

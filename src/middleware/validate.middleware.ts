@@ -31,11 +31,27 @@ export function validate(schemas: RequestValidationSchemas) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       if (schemas.params) {
-        req.params = await schemas.params.parseAsync(req.params);
+        const parsedParams = await schemas.params.parseAsync(req.params);
+        try {
+          req.params = parsedParams;
+        } catch {
+          Object.defineProperty(req, "params", {
+            value: parsedParams,
+            writable: true,
+            enumerable: true,
+            configurable: true,
+          });
+        }
       }
 
       if (schemas.query) {
-        req.query = await schemas.query.parseAsync(req.query);
+        const parsedQuery = await schemas.query.parseAsync(req.query);
+        Object.defineProperty(req, "query", {
+          value: parsedQuery,
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        });
       }
 
       if (schemas.body) {
