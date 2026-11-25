@@ -18,6 +18,11 @@ export const authSchema = new Schema<IAuth>(
       index: true,
     },
 
+    passwordHash: {
+      type: String,
+      default: null,
+    },
+
     googleId: {
       type: String,
       default: null,

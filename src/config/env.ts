@@ -16,16 +16,6 @@ export interface JwtConfig {
 }
 
 /**
- * Interface describing one-time password (OTP) delivery and rate-limit rules.
- */
-export interface OtpConfig {
-  secret: string;
-  expiryMinutes: number;
-  cooldownSeconds: number;
-  maxAttempts: number;
-}
-
-/**
  * Interface describing transactional email service settings (Resend API).
  */
 export interface EmailConfig {
@@ -57,7 +47,6 @@ export interface AppConfig {
   port: number;
   database: DatabaseConfig;
   jwt: JwtConfig;
-  otp: OtpConfig;
   email: EmailConfig;
   googleAuth: GoogleAuthConfig;
   uploads: UploadsConfig;
@@ -79,13 +68,6 @@ export const config: AppConfig = {
   jwt: {
     secret: process.env.JWT_SECRET || "default_jwt_secret_dev_only",
     expiresIn: "7d",
-  },
-
-  otp: {
-    secret: process.env.OTP_SECRET || "default_otp_secret_dev_only",
-    expiryMinutes: 5,
-    cooldownSeconds: 60,
-    maxAttempts: 5,
   },
 
   email: {

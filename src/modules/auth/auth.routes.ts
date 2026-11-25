@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
-  requestOTP,
-  verifyOTPAndLogin,
+  handleSignup,
+  handleLogin,
   handleGetUserSignIn,
   handleGetLogin,
   logout,
@@ -21,9 +21,9 @@ router.get("/logout", logout);
 router.get("/google", handleGoogleLogin);
 router.get("/google/callback", handleGoogleCallback);
 
-// API routes
-router.post("/send-otp", requestOTP);
-router.post("/verify-otp", verifyOTPAndLogin);
+// Email + Password API routes
+router.post("/signup", handleSignup);
+router.post("/login", handleLogin);
 router.post("/logout", logout);
 
 export default router;

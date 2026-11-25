@@ -1,13 +1,15 @@
 import type { Request, Response } from "express";
 import * as authService from "./auth.service.ts";
-import { validateRequestOTPPayload, validateVerifyOTPPayload } from "./auth.validation.ts";
+import { validateSignupPayload, validateLoginPayload } from "./auth.validation.ts";
 import { getGoogleAuthUrl, getGoogleUserFromCode } from "../../infrastructure/external-services/googleAuth.service.ts";
 import config from "../../config/env.ts";
 
 /**
- * Controller handling authentication page views, email OTP verification,
+ * Controller handling authentication page views, email+password auth,
  * Google OAuth callbacks, and cookie lifecycle.
  */
+
+// ── Page views ───────────────────────────────────────────────────────────────
 
 export function handleGetUserSignIn(req: Request, res: Response) {
   return res.render("signup", { user: res.locals.user });
@@ -17,15 +19,25 @@ export function handleGetLogin(req: Request, res: Response) {
   return res.render("login", { user: res.locals.user });
 }
 
-export const requestOTP = async (req: Request, res: Response) => {
-  try {
-    const { email, purpose } = validateRequestOTPPayload(req.body);
-    const result = await authService.requestOTP(email, purpose);
+// ── Email + Password ─────────────────────────────────────────────────────────
 
-    return res.status(200).json({
+export const handleSignup = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = validateSignupPayload(req.body);
+    const { token, isOnboarded, nextStep } = await authService.register(email, password);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: config.env === "production",
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(201).json({
       success: true,
-      message: result.message,
-      ...(result.devOtp ? { devOtp: result.devOtp } : {}),
+      message: "Account created successfully!",
+      isOnboarded,
+      nextStep,
     });
   } catch (error: any) {
     const status = error.statusCode || 400;
@@ -33,10 +45,10 @@ export const requestOTP = async (req: Request, res: Response) => {
   }
 };
 
-export const verifyOTPAndLogin = async (req: Request, res: Response) => {
+export const handleLogin = async (req: Request, res: Response) => {
   try {
-    const { email, otp, purpose } = validateVerifyOTPPayload(req.body);
-    const { token, isOnboarded, nextStep } = await authService.verifyOTPAndAuthenticate(email, otp, purpose);
+    const { email, password } = validateLoginPayload(req.body);
+    const { token, isOnboarded, nextStep } = await authService.login(email, password);
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -47,20 +59,24 @@ export const verifyOTPAndLogin = async (req: Request, res: Response) => {
 
     return res.status(200).json({
       success: true,
-      message: "Verified successfully!",
+      message: "Logged in successfully!",
       isOnboarded,
       nextStep,
     });
   } catch (error: any) {
-    const status = error.statusCode || 500;
+    const status = error.statusCode || 401;
     return res.status(status).json({ success: false, message: error.message });
   }
 };
+
+// ── Logout ───────────────────────────────────────────────────────────────────
 
 export const logout = (req: Request, res: Response) => {
   res.clearCookie("token");
   return res.redirect("/");
 };
+
+// ── Google OAuth ─────────────────────────────────────────────────
 
 export const handleGoogleLogin = (req: Request, res: Response) => {
   try {

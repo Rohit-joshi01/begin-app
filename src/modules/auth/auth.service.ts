@@ -1,17 +1,18 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import config from "../../config/env.ts";
 import authRepository from "./auth.repository.ts";
-import otpRepository from "./otp.repository.ts";
 import profileRepository from "../profiles/profile.repository.ts";
-import sendOTPEmail from "../../infrastructure/email/email.service.ts";
-import { generateOTP, hashOTP, verifyOTP } from "../../shared/utils/crypto.utils.ts";
 import {
   BadRequestError,
   ConflictError,
   NotFoundError,
   ForbiddenError,
+  UnauthorizedError,
 } from "../../shared/errors/index.ts";
-import type { IAuth, OTPPurpose } from "../../shared/types/database.types.ts";
+import type { IAuth } from "../../shared/types/database.types.ts";
+
+const BCRYPT_SALT_ROUNDS = 12;
 
 /**
  * Result shape returned after successful user authentication.
@@ -23,124 +24,81 @@ export interface AuthSessionResult {
   nextStep: string;
 }
 
-/**
- * Result shape returned after requesting an OTP.
- */
-export interface RequestOTPResult {
-  message: string;
-  devOtp?: string;
-}
+// ── Password Auth ────────────────────────────────────────────────────────────
 
 /**
- * Authentication service managing credential-less email OTP flows,
- * Google OAuth profile resolution, and JWT session issuance.
+ * Register a new user with email + password.
+ * Throws ConflictError if the email is already registered.
  */
-
-export const requestOTP = async (
+export const register = async (
   email: string,
-  purpose: OTPPurpose | string
-): Promise<RequestOTPResult> => {
-  const user = await authRepository.findByEmail(email);
+  password: string
+): Promise<AuthSessionResult> => {
+  const existing = await authRepository.findByEmail(email);
 
-  if (purpose === "SIGNUP" && user?.isEmailVerified) {
-    throw new ConflictError("Account already exists. Please login.");
+  if (existing) {
+    throw new ConflictError("An account with this email already exists. Please log in.");
   }
 
-  if (purpose === "LOGIN" && !user) {
-    throw new NotFoundError("Account not found. Please signup.");
-  }
+  const passwordHash = await bcrypt.hash(password, BCRYPT_SALT_ROUNDS);
 
-  if (user && !user.isActive) {
-    throw new ForbiddenError("Account is inactive.");
-  }
-
-  // Prevent frequent OTP requests within cooldown window
-  const recentOTP = await otpRepository.findRecentOTP(
+  const user = await authRepository.create({
     email,
-    purpose,
-    new Date(Date.now() - config.otp.cooldownSeconds * 1000)
-  );
-
-  if (recentOTP) {
-    throw new BadRequestError("Please wait 60 seconds before requesting another OTP.");
-  }
-
-  // Invalidate previous OTPs for this email and purpose
-  await otpRepository.deleteOTPsByEmailAndPurpose(email, purpose);
-
-  const otp = generateOTP();
-  console.log(`[AUTH OTP] Code for ${email} (${purpose}): ${otp}`);
-
-  const otpRecord = await otpRepository.createOTP({
-    email,
-    otpHash: hashOTP(otp),
-    purpose: purpose as OTPPurpose,
-    expiresAt: new Date(Date.now() + config.otp.expiryMinutes * 60 * 1000),
-    attempts: 0,
-    isUsed: false,
+    passwordHash,
+    isEmailVerified: true,          // treat signup itself as verification
+    emailVerifiedAt: new Date(),
   });
 
-  try {
-    await sendOTPEmail({
-      to: email,
-      otp,
-      purpose,
-    });
+  const profile = await profileRepository.create({
+    userId: user._id as any,
+    fullName: "",
+    avatarUrl: "/images/default.svg",
+  });
 
-    return {
-      message: "OTP sent successfully. Check your email or server log.",
-      devOtp: config.env !== "production" ? otp : undefined,
-    };
-  } catch (error: any) {
-    if (config.env !== "production") {
-      console.warn(`[AUTH OTP] Email sending failed (${error.message}). Use dev OTP: ${otp}`);
-      return {
-        message: `OTP sent (Dev code: ${otp}).`,
-        devOtp: otp,
-      };
-    }
+  const token = generateAuthToken(user);
+  const isOnboarded = Boolean(profile?.isOnboarded);
 
-    await otpRepository.deleteOTPById(otpRecord._id);
-    throw error;
-  }
+  return {
+    user,
+    token,
+    isOnboarded,
+    nextStep: isOnboarded ? "/" : "/onboarding/role",
+  };
 };
 
-export const verifyOTPAndAuthenticate = async (
+/**
+ * Log in an existing user with email + password.
+ * Uses bcrypt.compare — password is NEVER stored or transmitted in plain text.
+ */
+export const login = async (
   email: string,
-  otp: string,
-  purpose: OTPPurpose | string
+  password: string
 ): Promise<AuthSessionResult> => {
-  const otpRecord = await otpRepository.findActiveOTP(email, purpose);
 
-  if (!otpRecord) {
-    throw new BadRequestError("OTP expired or not found. Please request a new one.");
+  const user = await authRepository.findByEmailWithPassword(email);
+
+  if (!user) {
+    throw new NotFoundError("No account found with this email. Please sign up.");
   }
 
-  if (otpRecord.attempts >= config.otp.maxAttempts) {
-    await otpRepository.deleteOTPById(otpRecord._id);
-    throw new BadRequestError("Too many failed attempts. Please request a new OTP.");
+  if (!user.isActive) {
+    throw new ForbiddenError("Your account is currently inactive.");
   }
 
-  const isValid = verifyOTP(otp, otpRecord.otpHash);
-  if (!isValid) {
-    await otpRepository.incrementAttempts(otpRecord._id);
-    throw new BadRequestError("Invalid OTP. Please try again.");
+  if (!user.passwordHash) {
+    // Account exists but was created via Google OAuth — no passwrd set
+    throw new BadRequestError(
+      "This account uses Google Sign-In. Please continue with Google."
+    );
+
+    // hala madrid
   }
 
-  await otpRepository.markOTPUsed(otpRecord._id);
+  // passsowrd are never decyprted , bcrypt does that.
+  const isMatch = await bcrypt.compare(password, user.passwordHash);
 
-  let user: IAuth | null;
-  if (purpose === "SIGNUP") {
-    user = await authRepository.upsertByEmail(email, {
-      email,
-      isEmailVerified: true,
-      emailVerifiedAt: new Date(),
-    });
-  } else {
-    user = await authRepository.findByEmail(email);
-    if (!user) {
-      throw new NotFoundError("Account not found.");
-    }
+  if (!isMatch) {
+    throw new UnauthorizedError("Incorrect password. Please try again.");
   }
 
   const profile = await profileRepository.findByUserId(user._id as any) as any;
@@ -154,6 +112,8 @@ export const verifyOTPAndAuthenticate = async (
     nextStep: isOnboarded ? "/" : "/onboarding/role",
   };
 };
+
+// ── Google OAuth ─────────────────────────────────────────────────
 
 export const authenticateWithGoogle = async (googleUser: any): Promise<AuthSessionResult> => {
   if (!googleUser?.email) {
@@ -222,6 +182,8 @@ export const authenticateWithGoogle = async (googleUser: any): Promise<AuthSessi
     nextStep: isOnboarded ? "/" : "/onboarding/role",
   };
 };
+
+// ── Token ────────────────────────────────────────────────────────────────────
 
 export const generateAuthToken = (user: IAuth | { _id?: any; email: string; role?: string }): string => {
   return jwt.sign(

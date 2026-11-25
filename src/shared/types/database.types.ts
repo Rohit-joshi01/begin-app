@@ -15,6 +15,7 @@ export type UserRole = "USER" | "ADMIN";
 export interface IAuth {
   _id?: Types.ObjectId;
   email: string;
+  passwordHash?: string | null;
   googleId?: string | null;
   isEmailVerified: boolean;
   emailVerifiedAt?: Date | null;
@@ -25,20 +26,7 @@ export interface IAuth {
   updatedAt?: Date;
 }
 
-export type OTPPurpose = "SIGNUP" | "LOGIN";
 
-export interface IEmailOTP {
-  _id?: Types.ObjectId;
-  email: string;
-  otpHash: string;
-  purpose: OTPPurpose;
-  expiresAt: Date;
-  attempts: number;
-  isUsed: boolean;
-  verifiedAt?: Date | null;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
 
 // ----------------------------------------------------
 // 2. Profile Domain Types

@@ -16,11 +16,7 @@ export const BUILDER_ROLES = {
 } as const;
 export type BuilderRoleConstant = (typeof BUILDER_ROLES)[keyof typeof BUILDER_ROLES];
 
-export const OTP_PURPOSES = {
-  SIGNUP: "SIGNUP",
-  LOGIN: "LOGIN",
-} as const;
-export type OtpPurposeConstant = (typeof OTP_PURPOSES)[keyof typeof OTP_PURPOSES];
+
 
 export const STARTUP_STAGES = {
   IDEA: "Idea",

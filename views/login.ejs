@@ -11,13 +11,13 @@
         <div class="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
             <div class="mb-6 text-center">
                 <h1 class="text-2xl font-bold tracking-tight">Welcome back</h1>
-                <p class="text-sm text-gray-500 mt-1">Sign in with a one-time code sent to your email.</p>
+                <p class="text-sm text-gray-500 mt-1">Sign in to your Begin account.</p>
             </div>
 
             <!-- Alert Box -->
             <div id="alertBox" class="hidden mb-4 p-3 rounded-lg text-sm"></div>
 
-            <!-- Google Sign-In Button -->
+            <!-- Google Sign-In -->
             <div class="mb-5 space-y-4">
                 <a 
                     href="/auth/google" 
@@ -34,58 +34,42 @@
 
                 <div class="relative flex items-center justify-center">
                     <div class="border-t border-gray-200 w-full"></div>
-                    <div class="bg-white px-3 text-xs uppercase text-gray-400 font-medium absolute">or continue with email</div>
+                    <div class="bg-white px-3 text-xs uppercase text-gray-400 font-medium absolute">or sign in with email</div>
                 </div>
             </div>
 
-            <!-- Step 1: Request OTP -->
-            <form id="requestOtpForm" class="space-y-4">
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-4">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address</label>
                     <input 
                         type="email" 
                         id="email" 
+                        name="email"
                         required 
                         placeholder="you@college.edu"
                         class="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
                     />
                 </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        required 
+                        placeholder="Your password"
+                        class="w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
+                    />
+                </div>
+
                 <button 
                     type="submit" 
-                    id="sendOtpBtn"
+                    id="submitBtn"
                     class="w-full bg-black text-white font-medium py-2.5 px-4 rounded-lg hover:bg-gray-800 transition text-sm flex items-center justify-center"
                 >
-                    Send Login Code
-                </button>
-            </form>
-
-            <!-- Step 2: Verify OTP -->
-            <form id="verifyOtpForm" class="space-y-4 hidden mt-4">
-                <div>
-                    <label for="otp" class="block text-sm font-medium text-gray-700 mb-1">6-Digit Code</label>
-                    <input 
-                        type="text" 
-                        id="otp" 
-                        maxlength="6" 
-                        required 
-                        placeholder="123456"
-                        class="w-full text-center tracking-widest text-lg font-mono px-3.5 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition"
-                    />
-                    <p class="text-xs text-gray-500 mt-1 text-center">Code expires in 5 minutes</p>
-                </div>
-                <button 
-                    type="submit" 
-                    id="verifyOtpBtn"
-                    class="w-full bg-black text-white font-medium py-2.5 px-4 rounded-lg hover:bg-gray-800 transition text-sm"
-                >
-                    Verify & Sign In
-                </button>
-                <button 
-                    type="button" 
-                    id="backBtn" 
-                    class="w-full text-xs text-gray-600 hover:text-black py-1 text-center"
-                >
-                    Change email address
+                    Sign In
                 </button>
             </form>
 
@@ -97,90 +81,51 @@
     </main>
 
     <script>
-        const PURPOSE = "LOGIN";
-        const alertBox = document.getElementById("alertBox");
-        const requestForm = document.getElementById("requestOtpForm");
-        const verifyForm = document.getElementById("verifyOtpForm");
-        const emailInput = document.getElementById("email");
-        const otpInput = document.getElementById("otp");
-        const sendOtpBtn = document.getElementById("sendOtpBtn");
-        const verifyOtpBtn = document.getElementById("verifyOtpBtn");
-        const backBtn = document.getElementById("backBtn");
+        const form = document.getElementById('loginForm');
+        const alertBox = document.getElementById('alertBox');
+        const submitBtn = document.getElementById('submitBtn');
 
-        function showAlert(message, isError = false) {
+        function showAlert(message, type = 'error') {
             alertBox.textContent = message;
-            alertBox.className = `p-3 rounded-lg text-sm mb-4 ${isError ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-green-50 text-green-700 border border-green-200'}`;
-            alertBox.classList.remove("hidden");
+            alertBox.className = `mb-4 p-3 rounded-lg text-sm ${
+                type === 'error'
+                    ? 'bg-red-50 text-red-700 border border-red-200'
+                    : 'bg-green-50 text-green-700 border border-green-200'
+            }`;
+            alertBox.classList.remove('hidden');
         }
 
-        // Check for error in query parameters (e.g. from Google OAuth callback)
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorMsg = urlParams.get("error");
-        if (errorMsg) {
-            showAlert(errorMsg, true);
-        }
-
-        requestForm.addEventListener("submit", async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            sendOtpBtn.disabled = true;
-            sendOtpBtn.textContent = "Sending code...";
+            alertBox.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in...';
 
             try {
-                const res = await fetch("/api/auth/send-otp", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: emailInput.value, purpose: PURPOSE })
+                const res = await fetch('/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: document.getElementById('email').value,
+                        password: document.getElementById('password').value,
+                    }),
                 });
+
                 const data = await res.json();
 
-                if (!res.ok) throw new Error(data.message || "Failed to send OTP");
-
-                if (data.devOtp) {
-                    otpInput.value = data.devOtp;
+                if (data.success) {
+                    showAlert('Signed in! Redirecting...', 'success');
+                    setTimeout(() => window.location.href = data.nextStep || '/', 800);
+                } else {
+                    showAlert(data.message || 'Something went wrong.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Sign In';
                 }
-                showAlert(data.message || "OTP sent! Check your inbox.");
-                requestForm.classList.add("hidden");
-                verifyForm.classList.remove("hidden");
-                otpInput.focus();
             } catch (err) {
-                showAlert(err.message, true);
-            } finally {
-                sendOtpBtn.disabled = false;
-                sendOtpBtn.textContent = "Send Login Code";
+                showAlert('Network error. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign In';
             }
-        });
-
-        verifyForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            verifyOtpBtn.disabled = true;
-            verifyOtpBtn.textContent = "Verifying...";
-
-            try {
-                const res = await fetch("/api/auth/verify-otp", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: emailInput.value, otp: otpInput.value, purpose: PURPOSE })
-                });
-                const data = await res.json();
-
-                if (!res.ok) throw new Error(data.message || "Invalid OTP");
-
-                showAlert("Logged in! Redirecting...", false);
-                setTimeout(() => {
-                    window.location.href = data.nextStep || "/";
-                }, 1000);
-            } catch (err) {
-                showAlert(err.message, true);
-            } finally {
-                verifyOtpBtn.disabled = false;
-                verifyOtpBtn.textContent = "Verify & Sign In";
-            }
-        });
-
-        backBtn.addEventListener("click", () => {
-            verifyForm.classList.add("hidden");
-            requestForm.classList.remove("hidden");
-            alertBox.classList.add("hidden");
         });
     </script>
 </body>

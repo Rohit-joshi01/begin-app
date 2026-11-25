@@ -28,6 +28,10 @@ export async function findByEmail(email: string): Promise<IAuth | null> {
  * Find an Auth record by Google OAuth subject ID or by email.
  * Used during Google OAuth sign-in to detect existing accounts.
  */
+export async function findByEmailWithPassword(email: string): Promise<(IAuth & { passwordHash?: string | null }) | null> {
+  const doc = await Auth.findOne({ email }).select("+passwordHash").lean<IAuth & { passwordHash?: string | null }>();
+  return doc || null;
+}
 export async function findByGoogleIdOrEmail(googleId: string, email: string): Promise<IAuth | null> {
   const doc = await Auth.findOne({
     $or: [{ googleId }, { email }],
@@ -98,6 +102,7 @@ export async function findDocument(filter: Record<string, any>): Promise<any> {
 const authRepository = {
   findById,
   findByEmail,
+  findByEmailWithPassword,
   findByGoogleIdOrEmail,
   create,
   updateById,

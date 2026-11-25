@@ -1,57 +1,42 @@
 import { BadRequestError } from "../../shared/errors/index.ts";
 import { sanitizeEmail } from "../../shared/utils/string.utils.ts";
-import type { OTPPurpose } from "../../shared/types/database.types.ts";
 
 /**
  * Validated payload structures for authentication endpoints.
  */
 
-export interface RequestOTPInput {
+export interface SignupInput {
   email: string;
-  purpose: OTPPurpose;
+  password: string;
 }
-
-export interface VerifyOTPInput {
+export interface LoginInput {
   email: string;
-  otp: string;
-  purpose: OTPPurpose;
+  password: string;
 }
 
 /**
  * Validation functions for authentication endpoints.
  */
 
-export function validateRequestOTPPayload(body: any): RequestOTPInput {
-  let { email, purpose } = body || {};
-
-  if (!email || !purpose) {
-    throw new BadRequestError("Email and purpose are required.");
+export function validateSignupPayload(body: any): SignupInput {
+  let { email, password } = body || {};
+  if (!email || !password) {
+    throw new BadRequestError("Email and password are required.");
   }
-
   email = sanitizeEmail(email);
-  purpose = String(purpose).toUpperCase().trim();
-
-  if (!["SIGNUP", "LOGIN"].includes(purpose)) {
-    throw new BadRequestError("Invalid purpose.");
+  password = String(password).trim();
+  if (password.length < 8) {
+    throw new BadRequestError("Password must be at least 8 characters.");
   }
-
-  return { email, purpose: purpose as OTPPurpose };
+  return { email, password };
 }
 
-export function validateVerifyOTPPayload(body: any): VerifyOTPInput {
-  let { email, otp, purpose } = body || {};
-
-  if (!email || !otp || !purpose) {
-    throw new BadRequestError("Email, OTP and purpose are required.");
+export function validateLoginPayload(body: any): LoginInput {
+  let { email, password } = body || {};
+  if (!email || !password) {
+    throw new BadRequestError("Email and password are required.");
   }
-
   email = sanitizeEmail(email);
-  purpose = String(purpose).toUpperCase().trim();
-  otp = String(otp).trim();
-
-  if (!["SIGNUP", "LOGIN"].includes(purpose)) {
-    throw new BadRequestError("Invalid purpose.");
-  }
-
-  return { email, otp, purpose: purpose as OTPPurpose };
+  password = String(password).trim();
+  return { email, password };
 }
