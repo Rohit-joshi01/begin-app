@@ -55,7 +55,7 @@ Both test suites executed successfully.
 
 ### Architecture and Route Registration Tests
 
-Command: `node tests/architecture.test.js`
+Command: `tsx tests/architecture.test.ts`
 
 ```text
 Running Architecture and Route Registration Tests...
@@ -76,7 +76,7 @@ PASS: Architecture, route registration, and compatibility tests succeeded!
 
 ### View Rendering Tests
 
-Command: `node tests/views.test.js`
+Command: `tsx tests/views.test.ts`
 
 ```text
 Running EJS Template Compilation Tests...

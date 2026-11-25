@@ -101,9 +101,10 @@ begin-app/
 │   └── server.js                      # Server lifecycle & graceful shutdown
 │
 ├── tests/                             # Automated test suites
-│   ├── architecture.test.js           # Route verification & exports check
-│   ├── views.test.js                  # EJS template compilation tests
-│   └── integration.test.js            # End-to-end database & domain tests
+│   ├── architecture.test.ts           # Route verification & exports check
+│   ├── views.test.ts                  # EJS template compilation tests
+│   ├── integration.test.ts            # End-to-end database & domain tests
+│   └── postgres.test.ts               # PostgreSQL & Drizzle ORM layer tests
 │
 ├── views/                             # EJS frontend views
 ├── public/                            # Static assets & client uploads
@@ -193,7 +194,7 @@ To add a new feature (for example, `comments` or `notifications`):
    app.use("/<feature-name>", <featureName>Routes);
    ```
 8. **Add test coverage in `tests/`:**
-   Add unit or integration assertions in `tests/architecture.test.js` or `tests/integration.test.js`.
+   Add unit or integration assertions in `tests/architecture.test.ts` or `tests/integration.test.ts`.
 
 ---
 

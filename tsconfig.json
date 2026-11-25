@@ -4,19 +4,28 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "lib": ["ES2022"],
+    "allowJs": false,
+    "checkJs": false,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "types": ["node"]
+    "noEmit": true
   },
   "include": [
     "drizzle.config.ts",
-    "src/database/**/*.ts",
-    "tests/**/*.ts"
+    "src/**/*",
+    "tests/**/*",
+    "*.ts",
+    "controllers/**/*.ts",
+    "models/**/*.ts",
+    "routes/**/*.ts",
+    "services/**/*.ts",
+    "middlewares/**/*.ts",
+    "utils/**/*.ts",
+    "database/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public", "dist"]
 }
